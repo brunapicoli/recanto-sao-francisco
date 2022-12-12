@@ -1,0 +1,17 @@
+import styled from "styled-components";
+import { colors } from "../../../styles/colors";
+
+export const ArrowButtonContainer = styled.button`
+  border: none;
+  border-radius: 50px;
+  padding: 20px;
+  background-color: ${colors.white};
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.85;
+    transition: 0.2s;
+  }
+`;
+
+export const ArrowButtonIcon = styled.img``;
