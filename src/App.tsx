@@ -1,8 +1,14 @@
 import React from "react";
-import "./App.css";
+import { AppRoutes } from "./routes/AppRoutes";
+import { GlobalStyle } from "./styles/global";
 
 function App() {
-  return <div></div>;
+  return (
+    <React.StrictMode>
+      <GlobalStyle />
+      <AppRoutes />
+    </React.StrictMode>
+  );
 }
 
 export default App;
