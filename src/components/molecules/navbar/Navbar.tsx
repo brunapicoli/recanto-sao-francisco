@@ -26,6 +26,12 @@ export const Navbar = () => {
     { title: "Contato", link: "/contato" },
   ];
 
+  const openForm = () => {
+    window.open(
+      "https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform"
+    );
+  };
+
   useEffect(() => {
     window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
   }, []);
@@ -38,7 +44,10 @@ export const Navbar = () => {
     <NavbarContainer className={hideMenu ? "sandwichMenu" : ""}>
       <NavbarLogoContainer className={hideMenu ? "sandwichMenu" : ""}>
         <Link to="/">
-          <NavbarLogo src={require("../../../assets/images/logo.png")} />
+          <NavbarLogo
+            src={require("../../../assets/images/logo.png")}
+            alt="Logo do Recanto São Francisco"
+          />
         </Link>
         {hideMenu && (
           <NavbarSandwich
@@ -64,11 +73,7 @@ export const Navbar = () => {
                 </Link>
               ))}
             </NavbarMenuList>
-            <Button
-              text="Doar"
-              link="https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform"
-              variant="navbar"
-            />
+            <Button text="Doar" variant="navbar" onClick={openForm} />
           </NavbarMenu>
         </NavbarContent>
       )}
