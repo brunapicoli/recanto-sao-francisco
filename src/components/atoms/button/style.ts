@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../../styles/colors";
 
-export const ButtonConatiner = styled.button`
+export const ButtonContainer = styled.button`
   border: none;
   border-radius: 4px;
   padding: 1.6rem 3.2rem;
@@ -27,9 +27,9 @@ export const ButtonConatiner = styled.button`
     opacity: 0.85;
     transition: 0.2s;
   }
-`;
 
-export const ButtonLink = styled.a`
-  text-decoration: none;
-  color: inherit;
+  .link {
+    text-decoration: none;
+    color: inherit;
+  }
 `;

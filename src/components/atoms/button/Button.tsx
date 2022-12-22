@@ -1,27 +1,15 @@
-import { ButtonConatiner, ButtonLink } from "./style";
+import { ButtonContainer } from "./style";
 
 type ButtonProps = {
   text: string;
   variant?: "primary" | "secondary" | "navbar";
-  link?: string;
   onClick?: () => void;
 };
 
-export const Button = ({
-  text,
-  variant = "primary",
-  link,
-  onClick,
-}: ButtonProps) => {
+export const Button = ({ text, variant = "primary", onClick }: ButtonProps) => {
   return (
-    <ButtonConatiner className={variant} onClick={onClick}>
-      {link ? (
-        <ButtonLink href={link} target="_blank">
-          {text}
-        </ButtonLink>
-      ) : (
-        text
-      )}
-    </ButtonConatiner>
+    <ButtonContainer className={variant} onClick={onClick}>
+      {text}
+    </ButtonContainer>
   );
 };
