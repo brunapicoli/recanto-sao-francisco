@@ -19,7 +19,7 @@ export const ContributionCTA = ({ variant }: ContributionCTAProps) => {
   };
 
   const navigateToAdoption = () => {
-    window.location.replace("/adoção");
+    window.location.replace("/adocao");
   };
 
   return (

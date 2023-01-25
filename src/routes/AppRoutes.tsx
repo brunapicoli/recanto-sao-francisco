@@ -23,9 +23,9 @@ export const AppRoutes = () => {
         <Routes>
           <Route element={<Home />} path="/" />
           <Route element={<History />} path="/nossa-história" />
-          <Route element={<Adoption />} path="/adoção" />
+          <Route element={<Adoption />} path="/adocao" />
           <Route element={<Leaders />} path="/quem-somos" />
-          <Route element={<Documentation />} path="/transparência" />
+          <Route element={<Documentation />} path="/transparencia" />
           <Route element={<Help />} path="/como-ajudar" />
           <Route element={<Contact />} path="/contato" />
         </Routes>

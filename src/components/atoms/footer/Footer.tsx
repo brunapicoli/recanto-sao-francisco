@@ -39,7 +39,7 @@ export const Footer = () => {
       links: [
         {
           linkTitle: "Adote",
-          link: "/adoção",
+          link: "/adocao",
           externalLink: false,
           email: false,
         },

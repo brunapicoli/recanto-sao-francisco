@@ -19,7 +19,7 @@ export const Navbar = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const menuItems = [
-    { title: "Adoção", link: "/adoção" },
+    { title: "Adoção", link: "/adocao" },
     { title: "Quem somos", link: "/quem-somos" },
     { title: "Transparência", link: "/transparencia" },
     { title: "Como ajudar", link: "/como-ajudar" },
