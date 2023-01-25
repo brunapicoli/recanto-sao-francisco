@@ -6,4 +6,5 @@ type BackgroundOverlayContainerProps = {
 
 export const BackgroundOverlayContainer = styled.div<BackgroundOverlayContainerProps>`
   background-image: url(${(props) => props.backgroundImage});
+  background-size: cover;
 `;
