@@ -16,7 +16,7 @@ export const Mission = () => {
   ];
 
   return (
-    <MissionBackground>
+    <MissionBackground id="mission">
       <MissionBackgroundImage
         src={require("../../../assets/images/paws.png")}
         alt="Patinhas"

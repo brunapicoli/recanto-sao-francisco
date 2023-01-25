@@ -32,7 +32,7 @@ export const History = () => {
   }, []);
 
   return (
-    <HistoryContainer>
+    <HistoryContainer id="history">
       <Title title="NOSSA HISTÓRIA" className="historyTitle" />
       <>
         <HistoryContent>
