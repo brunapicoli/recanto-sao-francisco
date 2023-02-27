@@ -4,21 +4,23 @@ import { Navbar } from "../components/molecules/navbar/Navbar";
 
 type NavbarFooterProps = {
   children: React.ReactNode;
+  bgGreenNavbar?: boolean;
   hideContributionCTA?: boolean;
-  variantContributionCTA?: "green" | "white";
+  bgGreenContributionCTA?: boolean;
 };
 
 export const NavbarFooter = ({
   children,
+  bgGreenNavbar,
   hideContributionCTA,
-  variantContributionCTA,
+  bgGreenContributionCTA,
 }: NavbarFooterProps) => {
   return (
     <>
-      <Navbar />
+      <Navbar bgGreen={bgGreenNavbar} />
       {children}
       {!hideContributionCTA && (
-        <ContributionCTA variant={variantContributionCTA} />
+        <ContributionCTA bgGreen={bgGreenContributionCTA} />
       )}
       <Footer />
     </>

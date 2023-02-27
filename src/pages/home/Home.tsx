@@ -5,7 +5,7 @@ import { HomeBanner } from "./style";
 
 export const Home = () => {
   return (
-    <NavbarFooter variantContributionCTA="white">
+    <NavbarFooter>
       <HomeBanner
         src={require("../../assets/images/banner.png")}
         alt="Imagens de cães e gatos"

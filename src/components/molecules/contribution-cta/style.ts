@@ -2,16 +2,16 @@ import styled from "styled-components";
 import { colors } from "../../../styles/colors";
 
 type ContributionCTAContainerProps = {
-  variant?: "green" | "white";
+  bgGreen?: boolean;
 };
 
 type ContributionCTAContentProps = {
-  backgroundImage: string;
+  bgImg: string;
 };
 
 export const ContributionCTAContainer = styled.div<ContributionCTAContainerProps>`
   background-color: ${(props) =>
-    props.variant === "green" ? colors.greenTertiary : colors.white};
+    props.bgGreen ? colors.greenTertiary : colors.white};
   padding: 64px 110px;
 
   @media (max-width: 1350px) {
@@ -20,7 +20,7 @@ export const ContributionCTAContainer = styled.div<ContributionCTAContainerProps
 `;
 
 export const ContributionCTAContent = styled.div<ContributionCTAContentProps>`
-  background-image: url(${(props) => props.backgroundImage});
+  background-image: url(${(props) => props.bgImg});
   border-radius: 12px;
   max-width: 1280px;
   margin-left: auto;

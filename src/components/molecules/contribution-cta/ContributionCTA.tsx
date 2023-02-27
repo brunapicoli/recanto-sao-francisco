@@ -8,10 +8,10 @@ import {
 } from "./style";
 
 type ContributionCTAProps = {
-  variant?: "green" | "white";
+  bgGreen?: boolean;
 };
 
-export const ContributionCTA = ({ variant }: ContributionCTAProps) => {
+export const ContributionCTA = ({ bgGreen }: ContributionCTAProps) => {
   const openForm = () => {
     window.open(
       "https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform"
@@ -23,9 +23,9 @@ export const ContributionCTA = ({ variant }: ContributionCTAProps) => {
   };
 
   return (
-    <ContributionCTAContainer variant={variant}>
+    <ContributionCTAContainer bgGreen={bgGreen}>
       <ContributionCTAContent
-        backgroundImage={require("../../../assets/images/dogs-playing.png")}
+        bgImg={require("../../../assets/images/dogs-playing.png")}
       >
         <BackgroundOverlay className="backgroundOverlay">
           <ContributionCTATitle>

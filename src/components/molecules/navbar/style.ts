@@ -1,11 +1,17 @@
 import styled from "styled-components";
 import { colors } from "../../../styles/colors";
 
-export const NavbarContainer = styled.nav`
+type NavbarContainerProps = {
+  bgGreen?: boolean;
+};
+
+export const NavbarContainer = styled.nav<NavbarContainerProps>`
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 8px 0;
+  background-color: ${(props) =>
+    props.bgGreen ? colors.greenTertiary : colors.white};
 
   &.sandwichMenu {
     flex-direction: column;

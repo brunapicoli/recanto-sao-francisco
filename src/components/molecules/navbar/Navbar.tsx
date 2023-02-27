@@ -12,7 +12,11 @@ import {
   NavbarSandwichBar,
 } from "./style";
 
-export const Navbar = () => {
+type NavbarProps = {
+  bgGreen?: boolean;
+};
+
+export const Navbar = ({ bgGreen }: NavbarProps) => {
   const currentPath = useLocation().pathname;
   const [hideMenu, setHideMenu] = useState(false);
   const [openMenuSandwich, setOpenMenuSandwich] = useState(false);
@@ -41,7 +45,10 @@ export const Navbar = () => {
   }, [windowWidth]);
 
   return (
-    <NavbarContainer className={hideMenu ? "sandwichMenu" : ""}>
+    <NavbarContainer
+      bgGreen={bgGreen}
+      className={hideMenu ? "sandwichMenu" : ""}
+    >
       <NavbarLogoContainer className={hideMenu ? "sandwichMenu" : ""}>
         <Link to="/">
           <NavbarLogo
