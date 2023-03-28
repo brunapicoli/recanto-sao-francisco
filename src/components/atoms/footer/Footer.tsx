@@ -1,80 +1,74 @@
-import { Link } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
-import {
-  FooterContainer,
-  FooterForm,
-  FooterLogo,
-  FooterMenu,
-  FooterMenuList,
-  FooterMenuTitle,
-} from "./style";
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+import LogoImg from 'assets/images/logo.png';
+import { FooterContainer, FooterForm, FooterLogo, FooterMenu, FooterMenuList, FooterMenuTitle } from './style';
 
 export const Footer = () => {
   const menuItems = [
     {
-      title: "Sobre",
+      title: 'Sobre',
       links: [
         {
-          linkTitle: "Nossa história",
-          link: "/#history",
+          linkTitle: 'Nossa história',
+          link: '/#history',
           externalLink: false,
           email: false,
         },
         {
-          linkTitle: "Quem somos",
-          link: "/quem-somos",
+          linkTitle: 'Quem somos',
+          link: '/quem-somos',
           externalLink: false,
           email: false,
         },
         {
-          linkTitle: "Nossa missão",
-          link: "/#mission",
+          linkTitle: 'Nossa missão',
+          link: '/#mission',
           externalLink: false,
           email: false,
         },
       ],
     },
     {
-      title: "Como ajudar",
+      title: 'Como ajudar',
       links: [
         {
-          linkTitle: "Adote",
-          link: "/adocao",
+          linkTitle: 'Adote',
+          link: '/adocao',
           externalLink: false,
           email: false,
         },
         {
-          linkTitle: "Doe",
-          link: "https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform",
+          linkTitle: 'Doe',
+          link: 'https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform',
           externalLink: true,
           email: false,
         },
         {
-          linkTitle: "Voluntarie-se",
-          link: "https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform",
+          linkTitle: 'Voluntarie-se',
+          link: 'https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform',
           externalLink: true,
           email: false,
         },
       ],
     },
     {
-      title: "Contato",
+      title: 'Contato',
       links: [
         {
-          linkTitle: "Facebook",
-          link: "https://www.facebook.com/AppaRecantoSaoFrancisco",
+          linkTitle: 'Facebook',
+          link: 'https://www.facebook.com/AppaRecantoSaoFrancisco',
           externalLink: true,
           email: false,
         },
         {
-          linkTitle: "Instagram",
-          link: "https://www.instagram.com/recanto.saofrancisco/",
+          linkTitle: 'Instagram',
+          link: 'https://www.instagram.com/recanto.saofrancisco/',
           externalLink: true,
           email: false,
         },
         {
-          linkTitle: "E-mail",
-          link: "recantosaofranciscopinhal@gmail.com",
+          linkTitle: 'E-mail',
+          link: 'recantosaofranciscopinhal@gmail.com',
           externalLink: false,
           email: true,
         },
@@ -83,18 +77,13 @@ export const Footer = () => {
   ];
 
   const openForm = () => {
-    window.open(
-      "https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform"
-    );
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform');
   };
 
   return (
     <FooterContainer>
       <Link to="/" onClick={() => document.documentElement.scrollTo(0, 0)}>
-        <FooterLogo
-          src={require("../../../assets/images/logo.png")}
-          alt="Logo do Recanto São Francisco"
-        />
+        <FooterLogo src={LogoImg} alt="Logo do Recanto São Francisco" />
       </Link>
       <FooterMenu>
         {menuItems.map((menuItem) => (
@@ -125,10 +114,10 @@ export const Footer = () => {
         ))}
       </FooterMenu>
       <FooterForm>
-        Preencha nosso{" "}
+        Preencha nosso{' '}
         <Link to="#" onClick={openForm}>
           formulário
-        </Link>{" "}
+        </Link>{' '}
         de ajuda
       </FooterForm>
     </FooterContainer>

@@ -1,9 +1,5 @@
-import {
-  PersonCardContainer,
-  PersonCardImage,
-  PersonCardName,
-  PersonCardPosition,
-} from "./style";
+import AvatarImg from 'assets/images/avatar.jpg';
+import { PersonCardContainer, PersonCardImage, PersonCardName, PersonCardPosition } from './style';
 
 type PersonCardProps = {
   name: string;
@@ -11,14 +7,10 @@ type PersonCardProps = {
   img?: string;
 };
 
-export const PersonCard = ({
-  name,
-  position,
-  img = require("../../../assets/images/avatar.jpg"),
-}: PersonCardProps) => {
+export const PersonCard = ({ name, position, img = AvatarImg }: PersonCardProps) => {
   return (
     <PersonCardContainer>
-      <PersonCardImage src={img} />
+      <PersonCardImage src={img} alt={name} />
       <PersonCardName>{name}</PersonCardName>
       <PersonCardPosition>{position}</PersonCardPosition>
     </PersonCardContainer>

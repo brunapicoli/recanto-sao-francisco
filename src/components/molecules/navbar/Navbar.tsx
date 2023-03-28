@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Button } from "../../atoms/button/Button";
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Button } from '../../atoms/button/Button';
+import LogoImg from 'assets/images/logo.png';
 import {
   NavbarContainer,
   NavbarContent,
@@ -10,7 +11,7 @@ import {
   NavbarMenuList,
   NavbarSandwich,
   NavbarSandwichBar,
-} from "./style";
+} from './style';
 
 type NavbarProps = {
   bgGreen?: boolean;
@@ -23,21 +24,19 @@ export const Navbar = ({ bgGreen }: NavbarProps) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const menuItems = [
-    { title: "Adoção", link: "/adocao" },
-    { title: "Quem somos", link: "/quem-somos" },
-    { title: "Transparência", link: "/transparencia" },
-    { title: "Como ajudar", link: "/como-ajudar" },
-    { title: "Contato", link: "/contato" },
+    { title: 'Adoção', link: '/adocao' },
+    { title: 'Quem somos', link: '/quem-somos' },
+    { title: 'Transparência', link: '/transparencia' },
+    { title: 'Como ajudar', link: '/como-ajudar' },
+    { title: 'Contato', link: '/contato' },
   ];
 
   const openForm = () => {
-    window.open(
-      "https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform"
-    );
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform');
   };
 
   useEffect(() => {
-    window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
+    window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
   }, []);
 
   useEffect(() => {
@@ -45,37 +44,24 @@ export const Navbar = ({ bgGreen }: NavbarProps) => {
   }, [windowWidth]);
 
   return (
-    <NavbarContainer
-      bgGreen={bgGreen}
-      className={hideMenu ? "sandwichMenu" : ""}
-    >
-      <NavbarLogoContainer className={hideMenu ? "sandwichMenu" : ""}>
+    <NavbarContainer bgGreen={bgGreen} className={hideMenu ? 'sandwichMenu' : ''}>
+      <NavbarLogoContainer className={hideMenu ? 'sandwichMenu' : ''}>
         <Link to="/">
-          <NavbarLogo
-            src={require("../../../assets/images/logo.png")}
-            alt="Logo do Recanto São Francisco"
-          />
+          <NavbarLogo src={LogoImg} alt="Logo do Recanto São Francisco" />
         </Link>
         {hideMenu && (
-          <NavbarSandwich
-            onClick={() => setOpenMenuSandwich(!openMenuSandwich)}
-          >
-            <NavbarSandwichBar className={openMenuSandwich ? "open" : ""} />
-            <NavbarSandwichBar className={openMenuSandwich ? "open" : ""} />
+          <NavbarSandwich onClick={() => setOpenMenuSandwich(!openMenuSandwich)}>
+            <NavbarSandwichBar className={openMenuSandwich ? 'open' : ''} />
+            <NavbarSandwichBar className={openMenuSandwich ? 'open' : ''} />
           </NavbarSandwich>
         )}
       </NavbarLogoContainer>
       {((openMenuSandwich && hideMenu) || !hideMenu) && (
-        <NavbarContent className={hideMenu ? "sandwichMenu" : ""}>
-          <NavbarMenu className={hideMenu ? "sandwichMenu" : ""}>
-            <NavbarMenuList className={hideMenu ? "sandwichMenu" : ""}>
+        <NavbarContent className={hideMenu ? 'sandwichMenu' : ''}>
+          <NavbarMenu className={hideMenu ? 'sandwichMenu' : ''}>
+            <NavbarMenuList className={hideMenu ? 'sandwichMenu' : ''}>
               {menuItems.map((item) => (
-                <Link
-                  className={`navbarItem ${
-                    currentPath === item.link ? "active" : ""
-                  }`}
-                  to={item.link}
-                >
+                <Link className={`navbarItem ${currentPath === item.link ? 'active' : ''}`} to={item.link}>
                   {item.title}
                 </Link>
               ))}
