@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { colors } from "../../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../../styles/colors';
 
 export const ArrowButtonContainer = styled.button`
   border: none;
   border-radius: 50px;
-  padding: 20px;
+  padding: 2rem;
   background-color: ${colors.white};
   cursor: pointer;
 
@@ -14,4 +14,7 @@ export const ArrowButtonContainer = styled.button`
   }
 `;
 
-export const ArrowButtonIcon = styled.img``;
+export const ArrowButtonIcon = styled.img`
+  width: 2rem;
+  height: 1.6rem;
+`;

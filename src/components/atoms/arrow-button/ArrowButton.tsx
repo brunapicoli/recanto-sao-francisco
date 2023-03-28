@@ -1,4 +1,5 @@
-import { ArrowButtonContainer, ArrowButtonIcon } from "./style";
+import ArrowIcon from 'assets/icons/arrow.png';
+import { ArrowButtonContainer, ArrowButtonIcon } from './style';
 
 type ArrowButtonProps = {
   onClick: () => void;
@@ -7,7 +8,7 @@ type ArrowButtonProps = {
 export const ArrowButton = ({ onClick }: ArrowButtonProps) => {
   return (
     <ArrowButtonContainer onClick={onClick}>
-      <ArrowButtonIcon src={require("../../../assets/icons/arrow.png")} />
+      <ArrowButtonIcon src={ArrowIcon} />
     </ArrowButtonContainer>
   );
 };
