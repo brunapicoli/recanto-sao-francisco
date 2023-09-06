@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { colors } from "../../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../../styles/colors';
 
 export const MissionBackground = styled.div`
   position: relative;
@@ -21,17 +21,19 @@ export const MissionContainer = styled.section`
 
   .missionTitle {
     margin-left: -96px;
+
+    @media (max-width: 851px) {
+      margin-left: -73px;
+    }
+
+    @media (max-width: 380px) {
+      margin-left: 0;
+    }
   }
 
   @media (max-width: 1350px) {
     padding-left: 142px;
     padding-right: 64px;
-  }
-
-  @media (max-width: 851px) {
-    .missionTitle {
-      margin-left: -73px;
-    }
   }
 
   @media (max-width: 768px) {
@@ -43,8 +45,8 @@ export const MissionContainer = styled.section`
   }
 
   @media (max-width: 380px) {
-    padding-left: 56px;
-    padding-right: 56px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 `;
 

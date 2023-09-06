@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { colors } from "../../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../../styles/colors';
 
 export const HistoryContainer = styled.section`
   padding: 126px 110px 64px 206px;
@@ -9,17 +9,19 @@ export const HistoryContainer = styled.section`
 
   .historyTitle {
     margin-left: -96px;
+
+    @media (max-width: 851px) {
+      margin-left: -73px;
+    }
+
+    @media (max-width: 380px) {
+      margin-left: 0;
+    }
   }
 
   @media (max-width: 1350px) {
     padding-left: 142px;
     padding-right: 64px;
-  }
-
-  @media (max-width: 851px) {
-    .historyTitle {
-      margin-left: -73px;
-    }
   }
 
   @media (max-width: 768px) {
@@ -31,8 +33,8 @@ export const HistoryContainer = styled.section`
   }
 
   @media (max-width: 380px) {
-    padding-left: 56px;
-    padding-right: 56px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 `;
 

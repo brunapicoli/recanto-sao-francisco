@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { colors } from "../../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../../styles/colors';
 
 export const ButtonContainer = styled.button`
   border: none;
   border-radius: 4px;
-  padding: 1.6rem 3.2rem;
+  padding: 1.2rem 3.2rem;
   font-size: 1.6rem;
   cursor: pointer;
 

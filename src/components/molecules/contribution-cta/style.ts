@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { colors } from "../../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../../styles/colors';
 
 type ContributionCTAContainerProps = {
   bgGreen?: boolean;
@@ -10,12 +10,16 @@ type ContributionCTAContentProps = {
 };
 
 export const ContributionCTAContainer = styled.div<ContributionCTAContainerProps>`
-  background-color: ${(props) =>
-    props.bgGreen ? colors.greenTertiary : colors.white};
+  background-color: ${(props) => (props.bgGreen ? colors.greenTertiary : colors.white)};
   padding: 64px 110px;
 
   @media (max-width: 1350px) {
     padding: 64px;
+  }
+
+  @media (max-width: 380px) {
+    padding-left: 32px;
+    padding-right: 32px;
   }
 `;
 

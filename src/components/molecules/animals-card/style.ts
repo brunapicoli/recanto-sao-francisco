@@ -4,11 +4,9 @@ import { colors } from '../../../styles/colors';
 export const AnimalsCardContainer = styled.div`
   border-radius: 8px;
   background-color: ${colors.greenSecondary};
-  width: fit-content;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding-right: 6rem;
 
   @media (max-width: 590px) {
     padding-right: 0;
@@ -28,15 +26,20 @@ export const AnimalsCardHeader = styled.div`
   @media (max-width: 450px) {
     padding-left: 0px;
   }
+
+  @media (max-width: 380px) {
+    justify-content: center;
+    padding-right: 0;
+  }
 `;
 
 export const AnimalsCardContent = styled.div`
   display: flex;
   align-items: center;
-  gap: 6rem;
 
   @media (max-width: 450px) {
     flex-direction: column;
+    gap: 30px;
   }
 `;
 
