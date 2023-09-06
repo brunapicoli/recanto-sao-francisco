@@ -1,12 +1,15 @@
-import React from "react";
-import { AppRoutes } from "./routes/AppRoutes";
-import { GlobalStyle } from "./styles/global";
+import React from 'react';
+import { AppRoutes } from './routes/AppRoutes';
+import { GlobalStyle } from './styles/global';
+import { AppContextProvider } from 'context/AppContext';
 
 function App() {
   return (
     <React.StrictMode>
       <GlobalStyle />
-      <AppRoutes />
+      <AppContextProvider>
+        <AppRoutes />
+      </AppContextProvider>
     </React.StrictMode>
   );
 }
