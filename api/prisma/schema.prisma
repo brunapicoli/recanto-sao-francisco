@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Animal {
+  id          Int      @id @default(autoincrement())
+  age         Int
+  breed       String   @default("SRD")
+  coat        String
+  color       String
+  description String   @db.VarChar(255)
+  entryDate   DateTime @default(now())
+  name        String
+  photo       Photo?
+  sex         Sex
+  size        Size
+  species     Species
+}
+
+model Photo {
+  publicId String @id
+  url      String
+  animal   Animal @relation(fields: [animalId], references: [id])
+  animalId Int    @unique
+}
+
+enum Sex {
+  MALE
+  FEMALE
+}
+
+enum Size {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum Species {
+  CAT
+  DOG
+}

@@ -7,4 +7,5 @@ export const colors = {
   secondaryText: '#525560',
   offWhite: '#EBF0F9',
   white: '#FFFFFF',
+  border: '#E5E5E5',
 };
