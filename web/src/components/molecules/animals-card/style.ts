@@ -54,4 +54,5 @@ export const AnimalsCardImgs = styled.div`
 export const AnimalsCardImg = styled.img`
   width: 20rem;
   height: 20rem;
+  object-fit: cover;
 `;
