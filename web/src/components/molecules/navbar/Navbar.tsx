@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useAppContext } from 'context/AppContext';
 import { Button } from '../../atoms/button/Button';
 import LogoImg from 'assets/images/logo.png';
 import {
@@ -19,9 +20,10 @@ type NavbarProps = {
 
 export const Navbar = ({ bgGreen }: NavbarProps) => {
   const currentPath = useLocation().pathname;
+  const { windowWidth } = useAppContext();
+
   const [hideMenu, setHideMenu] = useState(false);
   const [openMenuSandwich, setOpenMenuSandwich] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const menuItems = [
     { title: 'Adoção', link: '/adocao' },
@@ -34,10 +36,6 @@ export const Navbar = ({ bgGreen }: NavbarProps) => {
   const openForm = () => {
     window.open('https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform');
   };
-
-  useEffect(() => {
-    window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
-  }, []);
 
   useEffect(() => {
     windowWidth < 620 ? setHideMenu(true) : setHideMenu(false);
@@ -61,7 +59,11 @@ export const Navbar = ({ bgGreen }: NavbarProps) => {
           <NavbarMenu className={hideMenu ? 'sandwichMenu' : ''}>
             <NavbarMenuList className={hideMenu ? 'sandwichMenu' : ''}>
               {menuItems.map((item) => (
-                <Link className={`navbarItem ${currentPath === item.link ? 'active' : ''}`} to={item.link}>
+                <Link
+                  key={item.title}
+                  className={`navbarItem ${currentPath === item.link ? 'active' : ''}`}
+                  to={item.link}
+                >
                   {item.title}
                 </Link>
               ))}

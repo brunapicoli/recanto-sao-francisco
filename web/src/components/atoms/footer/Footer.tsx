@@ -87,15 +87,16 @@ export const Footer = () => {
       </Link>
       <FooterMenu>
         {menuItems.map((menuItem) => (
-          <FooterMenuList>
+          <FooterMenuList key={menuItem.title}>
             <FooterMenuTitle>{menuItem.title}</FooterMenuTitle>
             {menuItem.links.map((item) =>
               item.externalLink ? (
-                <Link to="#" onClick={() => window.open(item.link)}>
+                <Link key={item.linkTitle} to="#" onClick={() => window.open(item.link)}>
                   {item.linkTitle}
                 </Link>
               ) : item.email ? (
                 <Link
+                  key={item.linkTitle}
                   to="#"
                   onClick={(e) => {
                     window.location.href = `mailto:${item.link}`;
@@ -105,7 +106,7 @@ export const Footer = () => {
                   {item.linkTitle}
                 </Link>
               ) : (
-                <HashLink smooth to={item.link}>
+                <HashLink key={item.linkTitle} smooth to={item.link}>
                   {item.linkTitle}
                 </HashLink>
               )

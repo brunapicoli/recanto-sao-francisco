@@ -13,18 +13,18 @@ export interface Animal {
   species: Species;
 }
 
-enum Sex {
+export enum Sex {
   MALE = 'MALE',
   FEMALE = 'FEMALE',
 }
 
-enum Size {
+export enum Size {
   SMALL = 'SMALL',
   MEDIUM = 'MEDIUM',
   LARGE = 'LARGE',
 }
 
-enum Species {
+export enum Species {
   CAT = 'CAT',
   DOG = 'DOG',
 }

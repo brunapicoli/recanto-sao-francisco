@@ -1,39 +1,36 @@
-import styled from "styled-components";
-import { colors } from "../../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../../styles/colors';
 
 type AnimalCardContainerProps = {
   backgroundImage: string;
 };
 
+type AnimalCardContentProps = {
+  male?: boolean;
+  show?: boolean;
+};
+
 export const AnimalCardContainer = styled.div<AnimalCardContainerProps>`
   background-image: url(${(props) => props.backgroundImage});
-  max-width: 290px;
-  min-height: 392px;
   border-radius: 8px;
+  cursor: pointer;
 `;
 
-export const AnimalCardContent = styled.div`
+export const AnimalCardContent = styled.div<AnimalCardContentProps>`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 24px 16px;
-  min-height: 392px;
   border-radius: 8px;
-  opacity: 0;
+  width: 290px;
+  height: 392px;
   transition: 0.2s;
-
-  &.male {
-    background-color: rgba(117, 188, 254, 0.8);
-  }
-
-  &.female {
-    background-color: rgba(255, 134, 228, 0.8);
-  }
-
-  &.show {
-    opacity: 1;
-  }
+  opacity: ${({ show }) => (show ? 1 : 0)};
+  background-color: ${({ male }) => (male ? 'rgba(117, 188, 254, 0.8)' : 'rgba(255, 134, 228, 0.8)')};
 `;
 
 export const AnimalCardName = styled.h2`
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: 400;
   letter-spacing: 2px;
   color: ${colors.offWhite};
@@ -41,7 +38,7 @@ export const AnimalCardName = styled.h2`
 `;
 
 export const AnimalCardDescription = styled.p`
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: 400;
   line-height: 160%;
   color: ${colors.offWhite};
@@ -53,8 +50,9 @@ export const AnimalCardCharacteristics = styled.ul`
 `;
 
 export const AnimalCardItem = styled.li`
-  font-size: 1.6rem;
+  font-size: 16px;
   font-weight: 400;
   line-height: 160%;
+  list-style: disc;
   color: ${colors.offWhite};
 `;

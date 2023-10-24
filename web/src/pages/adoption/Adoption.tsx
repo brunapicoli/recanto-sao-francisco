@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Animal } from 'models';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppContext } from 'context/AppContext';
 import { AnimalService } from 'services/AnimalService';
 import { Header } from '../../components/atoms/header/Header';
 import { AnimalsCard } from '../../components/molecules/animals-card/AnimalsCard';
@@ -16,26 +17,22 @@ import {
 } from './style';
 
 export const Adoption = () => {
-  const [cats, setCats] = useState<Animal[]>([]);
-  const [dogs, setDogs] = useState<Animal[]>([]);
+  const { cats, setCats, dogs, setDogs } = useAppContext();
 
-  const getCats = async () => {
+  const navigate = useNavigate();
+
+  const catsToShow = cats.slice(0, 3);
+  const dogsToShow = dogs.slice(0, 3);
+
+  const getAnimals = async () => {
     const cats = await AnimalService.getCats();
-    setCats(cats.splice(0, 3));
-  };
-
-  const getDogs = async () => {
     const dogs = await AnimalService.getDogs();
-    setDogs(dogs.splice(0, 3));
-  };
-
-  const navigateTo = (page: string) => {
-    window.location.href = page;
+    setCats(cats);
+    setDogs(dogs);
   };
 
   useEffect(() => {
-    getCats();
-    getDogs();
+    getAnimals();
   }, []);
 
   return (
@@ -70,15 +67,15 @@ export const Adoption = () => {
             {dogs?.length > 0 && (
               <AnimalsCard
                 title="NOSSOS CÃES"
-                imgs={dogs.map((dog) => ({ src: dog.photo, alt: dog.name }))}
-                onClick={() => navigateTo('/caes')}
+                imgs={dogsToShow.map((dog) => ({ src: dog.photo, alt: dog.name }))}
+                onClick={() => navigate('/caes')}
               />
             )}
             {cats?.length > 0 && (
               <AnimalsCard
                 title="NOSSOS GATOS"
-                imgs={cats.map((cat) => ({ src: cat.photo, alt: cat.name }))}
-                onClick={() => navigateTo('/gatos')}
+                imgs={catsToShow.map((cat) => ({ src: cat.photo, alt: cat.name }))}
+                onClick={() => navigate('/gatos')}
               />
             )}
           </AdoptionAnimals>

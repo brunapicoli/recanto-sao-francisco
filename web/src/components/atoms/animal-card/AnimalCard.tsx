@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { Animal, Sex, Size } from 'models';
 import {
   AnimalCardCharacteristics,
   AnimalCardContainer,
@@ -6,31 +7,39 @@ import {
   AnimalCardDescription,
   AnimalCardItem,
   AnimalCardName,
-} from "./style";
+} from './style';
 
 type AnimalCardProps = {
-  name: string;
-  description: string;
-  sex: "male" | "female";
-  age: number;
-  size: "small" | "medium" | "large";
-  entryDate: string;
-  backgroundImage: string;
+  animal: Animal;
 };
 
-export const AnimalCard = ({
-  name,
-  description,
-  sex,
-  age,
-  size,
-  entryDate,
-  backgroundImage,
-}: AnimalCardProps) => {
+export const AnimalCard = ({ animal }: AnimalCardProps) => {
   const [showAnimalInfo, setShowAnimalInfo] = useState(false);
+
+  const male = animal.sex === Sex.MALE;
+
+  const getDate = () => {
+    const date = new Date(animal.entryDate);
+    const month = date.toLocaleDateString('pt-BR', { month: 'long' });
+    const formattedMonth = month.charAt(0).toUpperCase() + month.slice(1);
+    const year = date.getUTCFullYear();
+    return formattedMonth + ' de ' + year;
+  };
+
+  const getSize = () => {
+    switch (animal.size) {
+      case Size.SMALL:
+        return 'pequeno';
+      case Size.MEDIUM:
+        return 'médio';
+      default:
+        return 'grande';
+    }
+  };
+
   return (
     <AnimalCardContainer
-      backgroundImage={backgroundImage}
+      backgroundImage={animal.photo}
       onMouseEnter={() => {
         setShowAnimalInfo(true);
       }}
@@ -38,23 +47,17 @@ export const AnimalCard = ({
         setShowAnimalInfo(false);
       }}
     >
-      <AnimalCardContent className={`${sex} ${showAnimalInfo ? "show" : ""}`}>
-        <AnimalCardName>{name.toUpperCase()}</AnimalCardName>
-        <AnimalCardDescription>{description}</AnimalCardDescription>
+      <AnimalCardContent show={showAnimalInfo} male={male}>
+        <div>
+          <AnimalCardName>{animal.name.toUpperCase()}</AnimalCardName>
+          <AnimalCardDescription>{animal.description}</AnimalCardDescription>
+        </div>
         <AnimalCardCharacteristics>
           <AnimalCardItem>
-            {sex === "male" ? "Macho" : "Fêmea"}, {age}{" "}
-            {age > 1 ? "anos" : "ano"}
+            {male ? 'Macho' : 'Fêmea'}, {animal.age} {animal.age > 1 ? 'anos' : 'ano'}
           </AnimalCardItem>
-          <AnimalCardItem>
-            Porte{" "}
-            {size === "small"
-              ? "pequeno"
-              : size === "medium"
-              ? "médio"
-              : "grande"}
-          </AnimalCardItem>
-          <AnimalCardItem>Entrada: {entryDate}</AnimalCardItem>
+          <AnimalCardItem>Porte {getSize()}</AnimalCardItem>
+          <AnimalCardItem>Entrada: {getDate()}</AnimalCardItem>
         </AnimalCardCharacteristics>
       </AnimalCardContent>
     </AnimalCardContainer>
