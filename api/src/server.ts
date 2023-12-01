@@ -1,11 +1,15 @@
 import fastify from 'fastify';
 import cors from '@fastify/cors';
 import { v2 as cloudinary } from 'cloudinary';
-import { getCats } from './routes/get-cats';
-import { getDogs } from './routes/get-dogs';
-import { createAnimal } from './routes/create-animal';
-import { deleteAnimal } from './routes/delete-animal';
-import { updateAnimal } from './routes/update-animal';
+import { getCats } from './routes/animals/get-cats';
+import { getDogs } from './routes/animals/get-dogs';
+import { createAnimal } from './routes/animals/create-animal';
+import { deleteAnimal } from './routes/animals/delete-animal';
+import { updateAnimal } from './routes/animals/update-animal';
+import { getDirectors } from './routes/directors/get-directors';
+import { createDirector } from './routes/directors/create-director';
+import { deleteDirector } from './routes/directors/delete-director';
+import { updateDirector } from './routes/directors/update-director';
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -25,6 +29,11 @@ app.register(getDogs);
 app.register(createAnimal);
 app.register(deleteAnimal);
 app.register(updateAnimal);
+
+app.register(getDirectors);
+app.register(createDirector);
+app.register(deleteDirector);
+app.register(updateDirector);
 
 app
   .listen({

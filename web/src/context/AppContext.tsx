@@ -1,4 +1,4 @@
-import { Animal } from 'models';
+import { Animal } from 'models/Animals';
 import React, { createContext, useEffect, useState } from 'react';
 
 interface AppContextProps {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAppContext } from 'context/AppContext';
-import { Species } from 'models';
+import { Species } from 'models/Animals';
 import { AnimalService } from 'services/AnimalService';
 import { AnimalCard } from 'components/atoms/animal-card/AnimalCard';
 import { NavbarFooter } from '../../templates/NavbarFooter';

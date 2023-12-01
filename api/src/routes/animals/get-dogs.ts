@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify';
-import { prisma } from '../lib/prisma';
+import { prisma } from '../../lib/prisma';
 
 export async function getDogs(app: FastifyInstance) {
   app.get('/dogs', async () => {
@@ -11,7 +11,7 @@ export async function getDogs(app: FastifyInstance) {
 
     const dogsWithPhoto = await Promise.all(
       dogs.map(async (dog) => {
-        const photo = await prisma.photo.findUniqueOrThrow({
+        const photo = await prisma.animalPhoto.findUniqueOrThrow({
           where: { animalId: dog.id },
         });
         return {

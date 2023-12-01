@@ -1,11 +1,11 @@
 export interface Animal {
+  id: number;
   age: number;
   breed: string;
   coat: string;
   color: string;
   description: string;
   entryDate: Date;
-  id: number;
   name: string;
   photo: string;
   sex: Sex;

@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 import { v2 as cloudinary } from 'cloudinary';
-import { prisma } from '../lib/prisma';
+import { prisma } from '../../lib/prisma';
 
 export async function createAnimal(app: FastifyInstance) {
   app.post('/animal', async (req) => {

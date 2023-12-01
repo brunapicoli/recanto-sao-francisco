@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Animal, Sex, Size } from 'models';
+import { Animal, Sex, Size } from 'models/Animals';
 import {
   AnimalCardCharacteristics,
   AnimalCardContainer,

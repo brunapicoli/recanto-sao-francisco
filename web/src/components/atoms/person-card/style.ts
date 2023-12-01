@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { colors } from "../../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../../styles/colors';
 
 export const PersonCardContainer = styled.div`
   display: flex;
@@ -9,6 +9,9 @@ export const PersonCardContainer = styled.div`
 
 export const PersonCardImage = styled.img`
   border-radius: 8px;
+  width: 29.6rem;
+  height: 32rem;
+  object-fit: cover;
 `;
 
 export const PersonCardName = styled.h2`

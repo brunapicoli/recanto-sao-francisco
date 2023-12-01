@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 import { v2 as cloudinary } from 'cloudinary';
-import { prisma } from '../lib/prisma';
+import { prisma } from '../../lib/prisma';
 
 export async function updateAnimal(app: FastifyInstance) {
   app.patch('/animal/:id', async (req) => {
@@ -26,7 +26,7 @@ export async function updateAnimal(app: FastifyInstance) {
 
     const { age, coat, color, description, name, photo, sex, size, breed, entryDate } = bodySchema.parse(req.body);
 
-    const animalPhoto = await prisma.photo.findUniqueOrThrow({
+    const animalPhoto = await prisma.animalPhoto.findUniqueOrThrow({
       where: { animalId: id },
     });
 
