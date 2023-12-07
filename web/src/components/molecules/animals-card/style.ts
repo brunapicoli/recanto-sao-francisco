@@ -33,6 +33,10 @@ export const AnimalsCardHeader = styled.div`
   }
 `;
 
+export const AnimalsCardButton = styled.div`
+  margin: 0 auto;
+`;
+
 export const AnimalsCardContent = styled.div`
   display: flex;
   align-items: center;

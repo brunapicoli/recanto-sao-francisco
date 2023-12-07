@@ -6,7 +6,6 @@ export const ArrowButtonContainer = styled.button`
   border-radius: 50px;
   padding: 2rem;
   background-color: ${colors.white};
-  margin: 0 auto;
   cursor: pointer;
 
   &:hover {

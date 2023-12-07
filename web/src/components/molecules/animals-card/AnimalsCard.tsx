@@ -2,7 +2,14 @@ import { useAppContext } from 'context/AppContext';
 import { ArrowButton } from '../../atoms/arrow-button/ArrowButton';
 import { ImgProps } from '../../atoms/header/Header';
 import { Title } from '../../atoms/title/Title';
-import { AnimalsCardContainer, AnimalsCardContent, AnimalsCardHeader, AnimalsCardImg, AnimalsCardImgs } from './style';
+import {
+  AnimalsCardButton,
+  AnimalsCardContainer,
+  AnimalsCardContent,
+  AnimalsCardHeader,
+  AnimalsCardImg,
+  AnimalsCardImgs,
+} from './style';
 
 type AnimalsCardProps = {
   title: string;
@@ -13,11 +20,17 @@ type AnimalsCardProps = {
 export const AnimalsCard = ({ title, imgs, onClick }: AnimalsCardProps) => {
   const { windowWidth } = useAppContext();
 
+  const renderButton = (
+    <AnimalsCardButton>
+      <ArrowButton onClick={onClick} />
+    </AnimalsCardButton>
+  );
+
   return (
     <AnimalsCardContainer>
       <AnimalsCardHeader>
         <Title title={title} />
-        {windowWidth > 450 && windowWidth <= 590 && <ArrowButton onClick={onClick} />}
+        {windowWidth > 450 && windowWidth <= 590 && renderButton}
       </AnimalsCardHeader>
       <AnimalsCardContent>
         <AnimalsCardImgs>
@@ -25,7 +38,7 @@ export const AnimalsCard = ({ title, imgs, onClick }: AnimalsCardProps) => {
             <AnimalsCardImg key={img.src} src={img.src} alt={img.alt} />
           ))}
         </AnimalsCardImgs>
-        {(windowWidth > 590 || windowWidth <= 450) && <ArrowButton onClick={onClick} />}
+        {(windowWidth > 590 || windowWidth <= 450) && renderButton}
       </AnimalsCardContent>
     </AnimalsCardContainer>
   );

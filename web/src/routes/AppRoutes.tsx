@@ -6,7 +6,7 @@ import { Adoption } from '../pages/adoption/Adoption';
 import { Animals } from 'pages/animals/Animals';
 import { Directors } from '../pages/directors/Directors';
 import { Contact } from '../pages/Contact';
-import { Documentation } from '../pages/Documentation';
+import { Documentation } from '../pages/documentation/Documentation';
 import { Help } from '../pages/Help';
 import { Home } from '../pages/home/Home';
 
