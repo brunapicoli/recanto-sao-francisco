@@ -12,6 +12,7 @@ type AnimalCardContentProps = {
 
 export const AnimalCardContainer = styled.div<AnimalCardContainerProps>`
   background-image: url(${(props) => props.backgroundImage});
+  background-size: cover;
   border-radius: 8px;
   cursor: pointer;
 `;

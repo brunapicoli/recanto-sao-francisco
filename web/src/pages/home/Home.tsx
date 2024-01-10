@@ -1,5 +1,5 @@
-import { History } from '../../components/molecules/history/History';
-import { Mission } from '../../components/molecules/mission/Mission';
+import { History } from '../../components/molecules/home/history/History';
+import { Mission } from '../../components/molecules/home/mission/Mission';
 import { NavbarFooter } from '../../templates/NavbarFooter';
 import BannerImg from 'assets/images/banner.png';
 import { HomeBanner } from './style';

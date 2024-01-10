@@ -1,4 +1,4 @@
-import { Title } from '../../atoms/title/Title';
+import { Title } from '../../../atoms/title/Title';
 import PawsImg from 'assets/images/paws.png';
 import ActualLourdesImg from 'assets/images/actual-lourdes.png';
 import {

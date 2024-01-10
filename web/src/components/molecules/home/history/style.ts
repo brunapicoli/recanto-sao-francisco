@@ -1,25 +1,13 @@
 import styled from 'styled-components';
-import { colors } from '../../../styles/colors';
+import { colors } from '../../../../styles/colors';
 
-export const MissionBackground = styled.div`
-  position: relative;
-  background-color: ${colors.greenTertiary};
-`;
-
-export const MissionBackgroundImage = styled.img`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  max-width: 100%;
-`;
-
-export const MissionContainer = styled.section`
-  padding: 96px 110px 122px 206px;
+export const HistoryContainer = styled.section`
+  padding: 126px 110px 64px 206px;
   max-width: 1535px;
   margin-left: auto;
   margin-right: auto;
 
-  .missionTitle {
+  .historyTitle {
     margin-left: -96px;
 
     @media (max-width: 851px) {
@@ -50,9 +38,8 @@ export const MissionContainer = styled.section`
   }
 `;
 
-export const MissionContent = styled.div`
+export const HistoryContent = styled.div`
   display: flex;
-  margin-top: 3.2rem;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -60,21 +47,37 @@ export const MissionContent = styled.div`
   }
 `;
 
-export const MissionTextContainer = styled.div`
-  z-index: 1;
-`;
+export const HistoryTextContainer = styled.div``;
 
-export const MissionText = styled.p`
+export const HistoryText = styled.p`
   font-size: 1.6rem;
   line-height: 160%;
   color: ${colors.secondaryText};
-  margin-bottom: 3.2rem;
+
+  &:first-child {
+    margin-top: 3.2rem;
+  }
+
+  &:not(.withoutMargin) {
+    margin-bottom: 3.2rem;
+  }
 `;
 
-export const MissionImage = styled.img`
+export const HistoryBoldText = styled.b`
+  display: flex;
+`;
+
+export const HistoryImage = styled.img`
   width: 480px;
   margin-left: 96px;
-  z-index: 1;
+  margin-top: 16px;
+  max-height: 227px;
+
+  &.firstImage {
+    margin-top: -62px;
+    margin-bottom: 18px;
+    max-height: 555px;
+  }
 
   @media (max-width: 1350px) {
     margin-left: 64px;
@@ -82,12 +85,18 @@ export const MissionImage = styled.img`
 
   @media (max-width: 1100px) {
     width: 39rem;
-    max-height: 51.6rem;
+    max-height: 18.4rem;
     margin-left: 48px;
+
+    &.firstImage {
+      max-height: 45.1rem;
+    }
   }
 
   @media (max-width: 768px) {
-    margin: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 32px !important;
+    margin-left: 0 !important;
   }
 
   @media (max-width: 380px) {

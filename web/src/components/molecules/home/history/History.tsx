@@ -1,5 +1,5 @@
 import { useAppContext } from 'context/AppContext';
-import { Title } from '../../atoms/title/Title';
+import { Title } from '../../../atoms/title/Title';
 import LourdesImg from 'assets/images/lourdes.png';
 import AnaLourdesImg from 'assets/images/ana-lourdes.png';
 import {
