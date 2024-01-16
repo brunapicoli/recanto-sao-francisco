@@ -1,6 +1,5 @@
 import { useAppContext } from 'context/AppContext';
 import { ArrowButton } from '../../atoms/arrow-button/ArrowButton';
-import { ImgProps } from '../../atoms/header/Header';
 import { Title } from '../../atoms/title/Title';
 import {
   AnimalsCardButton,
@@ -10,6 +9,11 @@ import {
   AnimalsCardImg,
   AnimalsCardImgs,
 } from './style';
+
+type ImgProps = {
+  src: string;
+  alt: string;
+};
 
 type AnimalsCardProps = {
   title: string;

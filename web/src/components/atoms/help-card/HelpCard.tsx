@@ -1,19 +1,18 @@
-import { ImgProps } from '../header/Header';
-import { HelpCardContainer, HelpCardContent, HelpCardDescription, HelpCardIcon, HelpCardTitle } from './style';
+import { HelpCardContainer, HelpCardContent, HelpCardIcon, HelpCardTitle } from './style';
 
-type HelpCardProps = {
+export type HelpCardProps = {
   title: string;
-  description: string;
-  img: ImgProps;
+  description: React.ReactNode;
+  img: string;
 };
 
 export const HelpCard = ({ title, description, img }: HelpCardProps) => {
   return (
     <HelpCardContainer>
-      <HelpCardIcon src={img.src} alt={img.alt} />
+      <HelpCardIcon src={img} />
       <HelpCardContent>
         <HelpCardTitle>{title}</HelpCardTitle>
-        <HelpCardDescription>{description}</HelpCardDescription>
+        {description}
       </HelpCardContent>
     </HelpCardContainer>
   );

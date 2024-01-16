@@ -1,13 +1,12 @@
-import styled from "styled-components";
-import { colors } from "../../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../../styles/colors';
 
 type HeaderContainerProps = {
   bgGreen?: boolean;
 };
 
 export const HeaderContainer = styled.section<HeaderContainerProps>`
-  background-color: ${(props) =>
-    props.bgGreen ? colors.greenTertiary : colors.white};
+  background-color: ${({ bgGreen }) => colors[bgGreen ? 'greenTertiary' : 'white']};
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,14 +1,9 @@
 import { HeaderContainer, HeaderContent, HeaderImg, HeaderSubtitle, HeaderTextContainer, HeaderTitle } from './style';
 
-export type ImgProps = {
-  src: string;
-  alt: string;
-};
-
 type HeaderProps = {
   title: string;
   subtitle: string;
-  img?: ImgProps;
+  img?: string;
   bgGreen?: boolean;
 };
 
@@ -20,7 +15,7 @@ export const Header = ({ title, subtitle, img, bgGreen }: HeaderProps) => {
           <HeaderTitle>{title}</HeaderTitle>
           <HeaderSubtitle className={img ? 'no-margin' : ''}>{subtitle}</HeaderSubtitle>
         </HeaderTextContainer>
-        {img && <HeaderImg src={img.src} alt={img.alt}></HeaderImg>}
+        {img && <HeaderImg src={img}></HeaderImg>}
       </HeaderContent>
     </HeaderContainer>
   );
