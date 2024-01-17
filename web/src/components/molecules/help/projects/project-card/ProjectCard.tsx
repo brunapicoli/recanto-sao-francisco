@@ -1,21 +1,13 @@
-import { BackgroundOverlay } from "../../atoms/background-overlay/BackgroundOverlay";
-import {
-  ProjectCardContainer,
-  ProjectCardDescription,
-  ProjectCardTitle,
-} from "./style";
+import { BackgroundOverlay } from '../../../../atoms/background-overlay/BackgroundOverlay';
+import { ProjectCardContainer, ProjectCardDescription, ProjectCardTitle } from './style';
 
-type ProjectCardProps = {
+export type ProjectCardProps = {
   title: string;
   description: string;
   backgroundImage: string;
 };
 
-export const ProjectCard = ({
-  title,
-  description,
-  backgroundImage,
-}: ProjectCardProps) => {
+export const ProjectCard = ({ title, description, backgroundImage }: ProjectCardProps) => {
   return (
     <ProjectCardContainer backgroundImage={backgroundImage}>
       <BackgroundOverlay className="backgroundOverlay">

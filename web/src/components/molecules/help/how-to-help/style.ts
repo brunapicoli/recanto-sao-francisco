@@ -3,7 +3,14 @@ import { colors } from '../../../../styles/colors';
 
 export const HowToHelpContainer = styled.section`
   padding: 9.7rem 11rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: ${colors.greenTertiary};
+
+  @media (max-width: 1350px) {
+    padding: 64px;
+  }
 
   @media (max-width: 380px) {
     padding-left: 32px;
