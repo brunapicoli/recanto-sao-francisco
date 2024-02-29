@@ -10,11 +10,12 @@ import { getDirectors } from './routes/directors/get-directors';
 import { createDirector } from './routes/directors/create-director';
 import { deleteDirector } from './routes/directors/delete-director';
 import { updateDirector } from './routes/directors/update-director';
+import { env } from '../env';
 
 cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
+  cloud_name: env.CLOUD_NAME,
+  api_key: env.API_KEY,
+  api_secret: env.API_SECRET,
   secure: true,
 });
 
