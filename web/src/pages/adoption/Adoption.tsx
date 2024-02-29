@@ -68,14 +68,14 @@ export const Adoption = () => {
               <AnimalsCard
                 title="NOSSOS CÃES"
                 imgs={dogsToShow.map((dog) => ({ src: dog.photo, alt: dog.name }))}
-                onClick={() => navigate('/caes')}
+                onClick={() => navigate('/adocao/caes')}
               />
             )}
             {cats?.length > 0 && (
               <AnimalsCard
                 title="NOSSOS GATOS"
                 imgs={catsToShow.map((cat) => ({ src: cat.photo, alt: cat.name }))}
-                onClick={() => navigate('/gatos')}
+                onClick={() => navigate('/adocao/gatos')}
               />
             )}
           </AdoptionAnimals>

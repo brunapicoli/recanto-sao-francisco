@@ -1,6 +1,5 @@
 import { useLayoutEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { Species } from 'models/Animals';
 import { History } from '../components/molecules/home/history/History';
 import { Adoption } from '../pages/adoption/Adoption';
 import { Animals } from 'pages/animals/Animals';
@@ -26,8 +25,8 @@ export const AppRoutes = () => {
           <Route element={<Home />} path="/" />
           <Route element={<History />} path="/nossa-história" />
           <Route element={<Adoption />} path="/adocao" />
-          <Route element={<Animals animalSpecies={Species.DOG} />} path="/caes" />
-          <Route element={<Animals animalSpecies={Species.CAT} />} path="/gatos" />
+          <Route element={<Animals />} path="/adocao/caes" />
+          <Route element={<Animals />} path="/adocao/gatos" />
           <Route element={<Directors />} path="/quem-somos" />
           <Route element={<Documentation />} path="/transparencia" />
           <Route element={<Help />} path="/como-ajudar" />
