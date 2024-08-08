@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Director {
+  id       Int            @id @default(autoincrement())
+  name     String
+  photo    DirectorPhoto?
+  position String
+}
+
+model DirectorPhoto {
+  publicId   String   @id
+  url        String
+  director   Director @relation(fields: [directorId], references: [id])
+  directorId Int      @unique
+}
+
+model Animal {
+  id          Int          @id @default(autoincrement())
+  age         Int
+  breed       String       @default("SRD")
+  coat        String
+  color       String
+  description String       @db.VarChar(255)
+  entryDate   DateTime     @default(now())
+  name        String
+  photo       AnimalPhoto?
+  sex         Sex
+  size        Size
+  species     Species
+}
+
+model AnimalPhoto {
+  publicId String @id
+  url      String
+  animal   Animal @relation(fields: [animalId], references: [id])
+  animalId Int    @unique
+}
+
+enum Sex {
+  MALE
+  FEMALE
+}
+
+enum Size {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum Species {
+  CAT
+  DOG
+}
