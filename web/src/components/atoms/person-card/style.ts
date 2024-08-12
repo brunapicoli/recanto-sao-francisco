@@ -5,6 +5,7 @@ export const PersonCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 29.6rem;
 `;
 
 export const PersonCardImage = styled.img`
@@ -19,6 +20,7 @@ export const PersonCardName = styled.h2`
   line-height: 160%;
   margin: 16px auto 8px;
   color: ${colors.primaryText};
+  text-align: center;
 `;
 
 export const PersonCardPosition = styled.p`

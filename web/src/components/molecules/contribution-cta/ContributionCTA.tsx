@@ -1,3 +1,4 @@
+import { HashLink } from 'react-router-hash-link';
 import { BackgroundOverlay } from '../../atoms/background-overlay/BackgroundOverlay';
 import { Button } from '../../atoms/button/Button';
 import DogsPlayingImg from 'assets/images/dogs-playing.png';
@@ -17,10 +18,6 @@ export const ContributionCTA = ({ bgGreen }: ContributionCTAProps) => {
     window.open('https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform');
   };
 
-  const navigateToAdoption = () => {
-    window.location.replace('/adocao');
-  };
-
   return (
     <ContributionCTAContainer bgGreen={bgGreen}>
       <ContributionCTAContent bgImg={DogsPlayingImg}>
@@ -28,7 +25,9 @@ export const ContributionCTA = ({ bgGreen }: ContributionCTAProps) => {
           <ContributionCTATitle>Você pode contribuir com o Recanto São Francisco!</ContributionCTATitle>
           <ContributionCTAButtons>
             <Button text="Seja um voluntário" onClick={openForm} />
-            <Button text="Adote" variant="secondary" onClick={navigateToAdoption} />
+            <HashLink smooth to="/adocao">
+              <Button text="Adote" variant="secondary" />
+            </HashLink>
           </ContributionCTAButtons>
         </BackgroundOverlay>
       </ContributionCTAContent>
