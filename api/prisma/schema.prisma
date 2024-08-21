@@ -28,7 +28,7 @@ model Animal {
   coat        String
   color       String
   description String       @db.VarChar(255)
-  entryDate   DateTime     @default(now())
+  entryDate   String // YYYY-MM
   name        String
   photo       AnimalPhoto?
   sex         Sex

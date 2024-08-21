@@ -1,4 +1,4 @@
-import { HashLink } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 import { BackgroundOverlay } from '../../atoms/background-overlay/BackgroundOverlay';
 import { Button } from '../../atoms/button/Button';
 import DogsPlayingImg from 'assets/images/dogs-playing.png';
@@ -25,9 +25,9 @@ export const ContributionCTA = ({ bgGreen }: ContributionCTAProps) => {
           <ContributionCTATitle>Você pode contribuir com o Recanto São Francisco!</ContributionCTATitle>
           <ContributionCTAButtons>
             <Button text="Seja um voluntário" onClick={openForm} />
-            <HashLink smooth to="/adocao">
+            <Link to="/adocao">
               <Button text="Adote" variant="secondary" />
-            </HashLink>
+            </Link>
           </ContributionCTAButtons>
         </BackgroundOverlay>
       </ContributionCTAContent>

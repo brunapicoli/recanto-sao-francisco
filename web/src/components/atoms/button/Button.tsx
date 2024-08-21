@@ -1,14 +1,14 @@
-import { ButtonContainer } from "./style";
+import { ButtonHTMLAttributes } from 'react';
+import { ButtonContainer } from './style';
 
-type ButtonProps = {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string;
-  variant?: "primary" | "secondary" | "navbar";
-  onClick?: () => void;
+  variant?: 'primary' | 'secondary' | 'navbar';
 };
 
-export const Button = ({ text, variant = "primary", onClick }: ButtonProps) => {
+export const Button = ({ text, variant = 'primary', onClick, ...props }: ButtonProps) => {
   return (
-    <ButtonContainer className={variant} onClick={onClick}>
+    <ButtonContainer {...props} className={variant} onClick={onClick}>
       {text}
     </ButtonContainer>
   );

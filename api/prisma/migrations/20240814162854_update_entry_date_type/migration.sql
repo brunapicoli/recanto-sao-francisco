@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Animal" ALTER COLUMN "entryDate" DROP DEFAULT,
+ALTER COLUMN "entryDate" SET DATA TYPE TEXT;

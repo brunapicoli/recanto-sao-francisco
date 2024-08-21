@@ -9,3 +9,7 @@ Runs the HTTP server on port 3333.
 ### `yarn prisma studio`
 
 Opens a visual editor for the database data.
+
+### `yarn prisma migrate dev --name <migration_name>`
+
+Syncs Prisma schema with database schema

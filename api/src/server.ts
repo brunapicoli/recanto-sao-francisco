@@ -1,5 +1,6 @@
 import fastify from 'fastify';
 import cors from '@fastify/cors';
+import multipart from '@fastify/multipart';
 import { v2 as cloudinary } from 'cloudinary';
 import { getCats } from './routes/animals/get-cats';
 import { getDogs } from './routes/animals/get-dogs';
@@ -24,6 +25,8 @@ const app = fastify();
 app.register(cors, {
   origin: 'http://localhost:3000',
 });
+
+app.register(multipart, { attachFieldsToBody: true });
 
 app.register(getCats);
 app.register(getDogs);

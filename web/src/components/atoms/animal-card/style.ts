@@ -10,6 +10,13 @@ type AnimalCardContentProps = {
   show?: boolean;
 };
 
+export const AnimalCardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+`;
+
 export const AnimalCardContainer = styled.div<AnimalCardContainerProps>`
   background-image: url(${(props) => props.backgroundImage});
   background-size: cover;
@@ -56,4 +63,9 @@ export const AnimalCardItem = styled.li`
   line-height: 160%;
   list-style: disc;
   color: ${colors.offWhite};
+`;
+
+export const AnimalUpdateContainer = styled.div`
+  display: flex;
+  gap: 1.2rem;
 `;

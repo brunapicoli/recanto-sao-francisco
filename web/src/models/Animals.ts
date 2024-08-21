@@ -5,13 +5,17 @@ export interface Animal {
   coat: string;
   color: string;
   description: string;
-  entryDate: Date;
+  entryDate: string; // YYYY-MM
   name: string;
   photo: string;
   sex: Sex;
   size: Size;
   species: Species;
 }
+
+export type AnimalFormData = Omit<Animal, 'id' | 'photo'> & {
+  photo: File;
+};
 
 export enum Sex {
   MALE = 'MALE',

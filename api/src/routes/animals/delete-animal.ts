@@ -4,7 +4,13 @@ import { v2 as cloudinary } from 'cloudinary';
 import { prisma } from '../../lib/prisma';
 
 export async function deleteAnimal(app: FastifyInstance) {
-  app.delete('/animal/:id', async (req) => {
+  app.delete('/animal/:id', async (req, reply) => {
+    const { authorization } = req.headers;
+
+    if (!authorization) {
+      return reply.status(401).send('Usuário não autorizado para excluir animal');
+    }
+
     const paramsSchema = z.object({
       id: z.coerce.number(),
     });

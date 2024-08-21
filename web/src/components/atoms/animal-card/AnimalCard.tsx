@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { Animal, Sex, Size } from 'models/Animals';
+import { useAppContext } from 'context/AppContext';
+import { Animal, Sex, Size, Species } from 'models/Animals';
+import { AnimalService } from 'services/AnimalService';
+import { formatDateToMonthYear, stringToDate } from 'utils/DateUtil';
+import { AnimalForm } from 'modals/animal-form/AnimalForm';
+import { Button } from '../button/Button';
 import {
   AnimalCardCharacteristics,
   AnimalCardContainer,
@@ -7,6 +12,8 @@ import {
   AnimalCardDescription,
   AnimalCardItem,
   AnimalCardName,
+  AnimalCardWrapper,
+  AnimalUpdateContainer,
 } from './style';
 
 type AnimalCardProps = {
@@ -14,17 +21,12 @@ type AnimalCardProps = {
 };
 
 export const AnimalCard = ({ animal }: AnimalCardProps) => {
+  const { isLoggedIn, setCats, setDogs } = useAppContext();
+
+  const [openAnimalForm, setOpenAnimalForm] = useState(false);
   const [showAnimalInfo, setShowAnimalInfo] = useState(false);
 
   const male = animal.sex === Sex.MALE;
-
-  const getDate = () => {
-    const date = new Date(animal.entryDate);
-    const month = date.toLocaleDateString('pt-BR', { month: 'long' });
-    const formattedMonth = month.charAt(0).toUpperCase() + month.slice(1);
-    const year = date.getUTCFullYear();
-    return formattedMonth + ' de ' + year;
-  };
 
   const getSize = () => {
     switch (animal.size) {
@@ -37,29 +39,56 @@ export const AnimalCard = ({ animal }: AnimalCardProps) => {
     }
   };
 
+  const handleDeleteAnimal = async () => {
+    await AnimalService.deleteAnimal(animal.id);
+    if (animal.species === Species.CAT) {
+      const updatedCats = await AnimalService.getCats();
+      setCats(updatedCats);
+    } else {
+      const updatedDogs = await AnimalService.getDogs();
+      setDogs(updatedDogs);
+    }
+  };
+
   return (
-    <AnimalCardContainer
-      backgroundImage={animal.photo}
-      onMouseEnter={() => {
-        setShowAnimalInfo(true);
-      }}
-      onMouseLeave={() => {
-        setShowAnimalInfo(false);
-      }}
-    >
-      <AnimalCardContent show={showAnimalInfo} male={male}>
-        <div>
-          <AnimalCardName>{animal.name.toUpperCase()}</AnimalCardName>
-          <AnimalCardDescription>{animal.description}</AnimalCardDescription>
-        </div>
-        <AnimalCardCharacteristics>
-          <AnimalCardItem>
-            {male ? 'Macho' : 'Fêmea'}, {animal.age} {animal.age > 1 ? 'anos' : 'ano'}
-          </AnimalCardItem>
-          <AnimalCardItem>Porte {getSize()}</AnimalCardItem>
-          <AnimalCardItem>Entrada: {getDate()}</AnimalCardItem>
-        </AnimalCardCharacteristics>
-      </AnimalCardContent>
-    </AnimalCardContainer>
+    <>
+      <AnimalCardWrapper>
+        <AnimalCardContainer
+          backgroundImage={animal.photo}
+          onMouseEnter={() => {
+            setShowAnimalInfo(true);
+          }}
+          onMouseLeave={() => {
+            setShowAnimalInfo(false);
+          }}
+        >
+          <AnimalCardContent show={showAnimalInfo} male={male}>
+            <div>
+              <AnimalCardName>{animal.name.toUpperCase()}</AnimalCardName>
+              <AnimalCardDescription>{animal.description}</AnimalCardDescription>
+            </div>
+            <AnimalCardCharacteristics>
+              <AnimalCardItem>
+                {male ? 'Macho' : 'Fêmea'}, {animal.age} {animal.age > 1 ? 'anos' : 'ano'}
+              </AnimalCardItem>
+              <AnimalCardItem>Porte {getSize()}</AnimalCardItem>
+              <AnimalCardItem>Entrada: {formatDateToMonthYear(stringToDate(animal.entryDate))}</AnimalCardItem>
+            </AnimalCardCharacteristics>
+          </AnimalCardContent>
+        </AnimalCardContainer>
+        {isLoggedIn && (
+          <AnimalUpdateContainer>
+            <Button text="Excluir" onClick={handleDeleteAnimal} />
+            <Button text="Editar" onClick={() => setOpenAnimalForm(true)} />
+          </AnimalUpdateContainer>
+        )}
+      </AnimalCardWrapper>
+      <AnimalForm
+        open={openAnimalForm}
+        animal={animal}
+        species={animal.species}
+        onClose={() => setOpenAnimalForm(false)}
+      />
+    </>
   );
 };

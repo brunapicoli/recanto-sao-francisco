@@ -7,6 +7,9 @@ export async function getDogs(app: FastifyInstance) {
       where: {
         species: 'DOG',
       },
+      orderBy: {
+        id: 'desc',
+      },
     });
 
     const dogsWithPhoto = await Promise.all(

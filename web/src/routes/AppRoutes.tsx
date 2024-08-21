@@ -1,13 +1,13 @@
 import { useLayoutEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { History } from '../components/molecules/home/history/History';
-import { Adoption } from '../pages/adoption/Adoption';
+import { Admin } from 'pages/admin/Admin';
+import { Adoption } from 'pages/adoption/Adoption';
 import { Animals } from 'pages/animals/Animals';
-import { Directors } from '../pages/directors/Directors';
-import { Contact } from '../pages/contact/Contact';
-import { Documentation } from '../pages/documentation/Documentation';
-import { Help } from '../pages/help/Help';
-import { Home } from '../pages/home/Home';
+import { Directors } from 'pages/directors/Directors';
+import { Contact } from 'pages/contact/Contact';
+import { Documentation } from 'pages/documentation/Documentation';
+import { Help } from 'pages/help/Help';
+import { Home } from 'pages/home/Home';
 
 export const AppRoutes = () => {
   const ScrollToTop = ({ children }: any) => {
@@ -23,7 +23,6 @@ export const AppRoutes = () => {
       <ScrollToTop>
         <Routes>
           <Route element={<Home />} path="/" />
-          <Route element={<History />} path="/nossa-história" />
           <Route element={<Adoption />} path="/adocao" />
           <Route element={<Animals />} path="/adocao/caes" />
           <Route element={<Animals />} path="/adocao/gatos" />
@@ -31,6 +30,7 @@ export const AppRoutes = () => {
           <Route element={<Documentation />} path="/transparencia" />
           <Route element={<Help />} path="/como-ajudar" />
           <Route element={<Contact />} path="/contato" />
+          <Route element={<Admin />} path="/admin" />
         </Routes>
       </ScrollToTop>
     </BrowserRouter>

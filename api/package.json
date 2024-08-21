@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@fastify/cors": "^8.4.0",
+    "@fastify/multipart": "^8.3.0",
     "@prisma/client": "^5.6.0",
     "cloudinary": "^1.41.0",
     "fastify": "^4.23.2",

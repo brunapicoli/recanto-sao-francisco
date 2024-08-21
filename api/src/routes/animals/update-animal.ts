@@ -2,38 +2,57 @@ import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 import { v2 as cloudinary } from 'cloudinary';
 import { prisma } from '../../lib/prisma';
+import { fileToDataURI } from '../../utils/file-util';
 
 export async function updateAnimal(app: FastifyInstance) {
-  app.patch('/animal/:id', async (req) => {
+  app.patch('/animal/:id', async (req, reply) => {
+    const { authorization } = req.headers;
+
+    if (!authorization) {
+      return reply.status(401).send('Usuário não autorizado para atualizar animal');
+    }
+
     const paramsSchema = z.object({
       id: z.coerce.number(),
     });
 
     const { id } = paramsSchema.parse(req.params);
 
-    const bodySchema = z.object({
+    const formDataSchema = z.object({
       age: z.number().optional(),
       breed: z.string().optional(),
       coat: z.string().optional(),
       color: z.string().optional(),
       description: z.string().optional(),
-      entryDate: z.date().optional(),
+      entryDate: z.string().optional(),
       name: z.string().optional(),
       photo: z.string().optional(),
       sex: z.enum(['MALE', 'FEMALE']).optional(),
       size: z.enum(['SMALL', 'MEDIUM', 'LARGE']).optional(),
     });
 
-    const { age, coat, color, description, name, photo, sex, size, breed, entryDate } = bodySchema.parse(req.body);
-
     const animalPhoto = await prisma.animalPhoto.findUniqueOrThrow({
       where: { animalId: id },
     });
 
-    if (photo) {
-      await cloudinary.uploader.upload(photo, {
-        public_id: animalPhoto.publicId,
-      });
+    const formData = await req.formData();
+
+    let animalData = {} as z.infer<typeof formDataSchema>;
+
+    for (const [name, value] of formData) {
+      if (name === 'photo' && value instanceof File) {
+        const dataURI = await fileToDataURI(value);
+        const uploadResult = await cloudinary.uploader.upload(dataURI, {
+          public_id: animalPhoto.publicId,
+          invalidate: true,
+          overwrite: true,
+        });
+        animalData.photo = uploadResult.secure_url;
+      } else if (name === 'age') {
+        animalData[name] = parseInt(value as string, 10);
+      } else {
+        animalData[name] = value;
+      }
     }
 
     await prisma.animal.update({
@@ -41,24 +60,18 @@ export async function updateAnimal(app: FastifyInstance) {
         id,
       },
       data: {
-        age,
-        breed,
-        coat,
-        color,
-        description,
-        entryDate,
-        name,
-        sex,
-        size,
+        age: animalData.age,
+        breed: animalData.breed,
+        coat: animalData.coat,
+        color: animalData.color,
+        description: animalData.description,
+        entryDate: animalData.entryDate,
+        name: animalData.name,
+        sex: animalData.sex,
+        size: animalData.size,
       },
     });
 
-    const animal = await prisma.animal.findUniqueOrThrow({
-      where: { id },
-    });
-
-    const animalWithPhoto = { ...animal, photo: animalPhoto.url };
-
-    return animalWithPhoto;
+    return { ...animalData };
   });
 }
