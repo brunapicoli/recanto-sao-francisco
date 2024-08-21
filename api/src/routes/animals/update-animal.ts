@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
-import { v2 as cloudinary } from 'cloudinary';
+import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
 import { prisma } from '../../lib/prisma';
 import { fileToDataURI } from '../../utils/file-util';
 
@@ -42,12 +42,11 @@ export async function updateAnimal(app: FastifyInstance) {
     for (const [name, value] of formData) {
       if (name === 'photo' && value instanceof File) {
         const dataURI = await fileToDataURI(value);
-        const uploadResult = await cloudinary.uploader.upload(dataURI, {
+        const uploadResponse = await cloudinary.uploader.upload(dataURI, {
           public_id: animalPhoto.publicId,
           invalidate: true,
-          overwrite: true,
         });
-        animalData.photo = uploadResult.secure_url;
+        animalData.photo = uploadResponse.secure_url;
       } else if (name === 'age') {
         animalData[name] = parseInt(value as string, 10);
       } else {
@@ -67,6 +66,11 @@ export async function updateAnimal(app: FastifyInstance) {
         description: animalData.description,
         entryDate: animalData.entryDate,
         name: animalData.name,
+        photo: {
+          update: {
+            url: animalData.photo,
+          },
+        },
         sex: animalData.sex,
         size: animalData.size,
       },
