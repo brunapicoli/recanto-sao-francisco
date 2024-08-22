@@ -40,13 +40,13 @@ export const HowToHelp = () => {
       description: (
         <>
           <HowToHelpText>
-            <HowToHelpTextBold>Agência:</HowToHelpTextBold> 0331 (Caixa Econômica Federal)
+            <HowToHelpTextBold>Agência:</HowToHelpTextBold> 3125 (Banco Sicoob Agrocred)
           </HowToHelpText>
           <HowToHelpText>
             <HowToHelpTextBold>Operação:</HowToHelpTextBold> 003
           </HowToHelpText>
           <HowToHelpText>
-            <HowToHelpTextBold>Conta Corrente:</HowToHelpTextBold> 00001238-0
+            <HowToHelpTextBold>Conta Corrente:</HowToHelpTextBold> 833.018-2
           </HowToHelpText>
           <HowToHelpText>
             <HowToHelpTextBold>Favorecido:</HowToHelpTextBold> Associação Pinhalense de Proteção aos Animais São
