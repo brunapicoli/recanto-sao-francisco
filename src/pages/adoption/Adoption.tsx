@@ -38,7 +38,9 @@ export const Adoption = () => {
         <AdoptionContent>
           <AdoptionTitle>Como adotar no Recanto São Francisco?</AdoptionTitle>
           <AdoptionList>
-            <AdoptionItem>Ir à sede do Recanto: Rodovia SP-342, Km 198, Bairro Concrelix (ao lado do CZZ)</AdoptionItem>
+            <AdoptionItem>
+              Ir à sede do Recanto: Rodovia SP-342, Km 98, Distrito Industrial Irmãos Del Guerra (ao lado do CZZ)
+            </AdoptionItem>
             <AdoptionItem>Levar uma cópia de RG, CPF e comprovante de residência atualizado</AdoptionItem>
             <AdoptionItem>Passar por uma entrevista</AdoptionItem>
             <AdoptionItem>Receber orientações sobre os cuidados com os animais</AdoptionItem>

@@ -1,6 +1,9 @@
+import { Sex } from './Animals';
+
 export interface Director {
-  id: number;
   name: string;
-  photo: string;
   position: string;
+  electedIn: string;
+  mandateExpiration: string;
+  sex: Sex;
 }

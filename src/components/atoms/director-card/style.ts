@@ -4,28 +4,27 @@ import { colors } from '../../../styles/colors';
 export const PersonCardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 29.6rem;
-`;
-
-export const PersonCardImage = styled.img`
+  gap: 8px;
+  width: 29.8rem;
   border-radius: 8px;
-  width: 100%;
-  height: 32rem;
-  object-fit: cover;
+  background-color: ${colors.greenTertiary};
+  padding: 1.6rem 2.4rem;
 `;
 
 export const PersonCardName = styled.h2`
   font-size: 2rem;
-  line-height: 160%;
-  margin: 16px auto 8px;
+  line-height: 140%;
   color: ${colors.primaryText};
-  text-align: center;
 `;
 
 export const PersonCardPosition = styled.p`
   font-size: 1.2rem;
   line-height: 160%;
-  opacity: 0.6;
+  color: ${colors.primaryText};
+`;
+
+export const PersonCardText = styled.p`
+  font-size: 1.2rem;
+  line-height: 160%;
   color: ${colors.primaryText};
 `;

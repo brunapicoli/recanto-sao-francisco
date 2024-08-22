@@ -44,7 +44,7 @@ export const Contact = () => {
             </ContactLink>
             <ContactLine />
             <ContactSubtitle>Recanto São Francisco</ContactSubtitle>
-            <ContactText>Rodovia SP-342, Km 198, Bairro Concrelix</ContactText>
+            <ContactText>Rodovia SP-342, Km 98, Distrito Industrial Irmãos Del Guerra</ContactText>
             <ContactText>Espírito Santo do Pinhal - SP</ContactText>
             <ContactSocialMedia>
               <ContactLink href="https://www.facebook.com/AppaRecantoSaoFrancisco" target="_blank">

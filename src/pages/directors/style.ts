@@ -21,7 +21,7 @@ export const DirectorsList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 35px;
+  gap: 3.2rem;
   margin: 0 114px;
 
   @media (max-width: 1350px) {
