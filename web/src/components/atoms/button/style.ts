@@ -1,11 +1,13 @@
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 import { colors } from '../../../styles/colors';
 
-export const ButtonContainer = styled.button`
+export const buttonStyles = css`
   border: none;
   border-radius: 4px;
   padding: 1.2rem 3.2rem;
   font-size: 1.6rem;
+  display: flex;
   cursor: pointer;
 
   &.primary {
@@ -32,4 +34,13 @@ export const ButtonContainer = styled.button`
     text-decoration: none;
     color: inherit;
   }
+`;
+
+export const ButtonContainer = styled.button`
+  ${buttonStyles}
+`;
+
+export const LinkContainer = styled(Link)`
+  ${buttonStyles}
+  text-decoration: none;
 `;

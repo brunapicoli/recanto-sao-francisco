@@ -12,7 +12,7 @@ interface AppContextProps {
   windowWidth: number;
 }
 
-interface AppContextProviderProps {
+interface AppProviderProps {
   children: React.ReactNode;
 }
 
@@ -20,7 +20,7 @@ const AppContext = createContext({} as AppContextProps);
 
 export const useAppContext = () => React.useContext(AppContext);
 
-export const AppContextProvider = ({ children }: AppContextProviderProps) => {
+export const AppProvider = ({ children }: AppProviderProps) => {
   const token = sessionStorage.getItem('token');
 
   const [cats, setCats] = useState<Animal[]>([]);

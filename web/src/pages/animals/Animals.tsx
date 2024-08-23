@@ -7,7 +7,7 @@ import { AnimalCard } from 'components/atoms/animal-card/AnimalCard';
 import { Button } from 'components/atoms/button/Button';
 import { AnimalForm } from 'modals/animal-form/AnimalForm';
 import { NavbarFooter } from '../../templates/NavbarFooter';
-import { AnimalsContainer, AnimalsList, AnimalsTitle } from './style';
+import { AddAnimalContainer, AnimalsContainer, AnimalsList, AnimalsTitle } from './style';
 
 export const Animals = () => {
   const { cats, dogs, isLoggedIn, setCats, setDogs } = useAppContext();
@@ -46,7 +46,11 @@ export const Animals = () => {
       <NavbarFooter hideContributionCTA>
         <AnimalsContainer>
           <AnimalsTitle>Conheça nossos {isDog ? 'cães' : 'gatos'}</AnimalsTitle>
-          {isLoggedIn && <Button text="Cadastrar novo animal" onClick={() => setOpenAnimalForm(true)} />}
+          {isLoggedIn && (
+            <AddAnimalContainer>
+              <Button onClick={() => setOpenAnimalForm(true)}>Cadastrar novo animal</Button>
+            </AddAnimalContainer>
+          )}
           <AnimalsList>
             {currentAnimal.map((animal) => (
               <AnimalCard key={animal.id} animal={animal} />

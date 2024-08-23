@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useAppContext } from 'context/AppContext';
 import { Button } from 'components/atoms/button/Button';
@@ -21,15 +20,11 @@ export const Admin = () => {
       <AdminTitle>Área do Administrador</AdminTitle>
       {isLoggedIn ? (
         <AdminContent>
-          <Link to="/adocao/caes">
-            <Button text="Atualizar cães" />
-          </Link>
-          <Link to="/adocao/gatos">
-            <Button text="Atualizar gatos" />
-          </Link>
+          <Button link="/adocao/caes">Atualizar cães</Button>
+          <Button link="/adocao/gatos">Atualizar gatos</Button>
         </AdminContent>
       ) : (
-        <Button text="Login" onClick={() => login()} />
+        <Button onClick={() => login()}>Login</Button>
       )}
     </AdminContainer>
   );

@@ -68,7 +68,9 @@ export const Navbar = ({ bgGreen }: NavbarProps) => {
                 </Link>
               ))}
             </NavbarMenuList>
-            <Button text="Doar" variant="navbar" onClick={openForm} />
+            <Button variant="navbar" onClick={openForm}>
+              Doar
+            </Button>
           </NavbarMenu>
         </NavbarContent>
       )}

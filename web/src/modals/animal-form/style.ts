@@ -4,7 +4,6 @@ export const AnimalFormColumn = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 0.8rem;
 `;
 
 export const AnimalFormRow = styled.div`

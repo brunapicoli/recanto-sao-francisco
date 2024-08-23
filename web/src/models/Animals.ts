@@ -1,3 +1,5 @@
+import { Sex } from './Sex';
+
 export interface Animal {
   id: number;
   age: number;
@@ -16,11 +18,6 @@ export interface Animal {
 export type AnimalFormData = Omit<Animal, 'id' | 'photo'> & {
   photo: File;
 };
-
-export enum Sex {
-  MALE = 'MALE',
-  FEMALE = 'FEMALE',
-}
 
 export enum Size {
   SMALL = 'SMALL',

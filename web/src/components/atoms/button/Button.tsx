@@ -1,15 +1,19 @@
-import { ButtonHTMLAttributes } from 'react';
-import { ButtonContainer } from './style';
+import { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
+import { ButtonContainer, LinkContainer } from './style';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  text: string;
+  link?: string;
   variant?: 'primary' | 'secondary' | 'navbar';
 };
 
-export const Button = ({ text, variant = 'primary', onClick, ...props }: ButtonProps) => {
-  return (
+export const Button = ({ children, link, variant = 'primary', onClick, ...props }: ButtonProps) => {
+  return link ? (
+    <LinkContainer {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)} className={variant} to={link}>
+      {children}
+    </LinkContainer>
+  ) : (
     <ButtonContainer {...props} className={variant} onClick={onClick}>
-      {text}
+      {children}
     </ButtonContainer>
   );
 };

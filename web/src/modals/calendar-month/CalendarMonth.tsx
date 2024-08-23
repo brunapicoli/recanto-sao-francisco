@@ -4,12 +4,13 @@ import { formatDateToYearMonth, formatMonthToShort, stringToDate } from 'utils/D
 import { CalendarContainer } from './style';
 
 type CalendarMonthProps = PopoverProps & {
+  anchor: HTMLElement | null;
   value?: string;
   onDateChange: (date: string) => void;
   onClose: () => void;
 };
 
-export const CalendarMonth = ({ value, open, onDateChange, onClose }: CalendarMonthProps) => {
+export const CalendarMonth = ({ anchor, value, open, onDateChange, onClose }: CalendarMonthProps) => {
   const initialValue = value ? stringToDate(value) : undefined;
 
   const handleDateChange = (value: Value) => {
@@ -22,11 +23,12 @@ export const CalendarMonth = ({ value, open, onDateChange, onClose }: CalendarMo
 
   return (
     <Popover
+      anchorEl={anchor}
       open={open}
       onClose={onClose}
       anchorOrigin={{
-        vertical: 'center',
-        horizontal: 'center',
+        vertical: 'bottom',
+        horizontal: 'right',
       }}
       transformOrigin={{
         vertical: 'bottom',

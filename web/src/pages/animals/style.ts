@@ -16,6 +16,10 @@ export const AnimalsTitle = styled.h2`
   margin-bottom: 48px;
 `;
 
+export const AddAnimalContainer = styled.div`
+  margin-bottom: 2rem;
+`;
+
 export const AnimalsList = styled.ul`
   display: flex;
   flex-wrap: wrap;

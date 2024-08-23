@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { BackgroundOverlay } from '../../atoms/background-overlay/BackgroundOverlay';
 import { Button } from '../../atoms/button/Button';
 import DogsPlayingImg from 'assets/images/dogs-playing.png';
@@ -24,10 +23,10 @@ export const ContributionCTA = ({ bgGreen }: ContributionCTAProps) => {
         <BackgroundOverlay className="backgroundOverlay">
           <ContributionCTATitle>Você pode contribuir com o Recanto São Francisco!</ContributionCTATitle>
           <ContributionCTAButtons>
-            <Button text="Seja um voluntário" onClick={openForm} />
-            <Link to="/adocao">
-              <Button text="Adote" variant="secondary" />
-            </Link>
+            <Button onClick={openForm}>Seja um voluntário</Button>
+            <Button variant="secondary" link="/adocao">
+              Adote
+            </Button>
           </ContributionCTAButtons>
         </BackgroundOverlay>
       </ContributionCTAContent>
