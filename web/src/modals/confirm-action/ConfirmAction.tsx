@@ -1,4 +1,4 @@
-import { Backdrop, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText } from '@mui/material';
+import { Backdrop, Dialog, DialogActions, DialogContent, DialogContentText } from '@mui/material';
 import { DialogProps } from '@mui/material/Dialog';
 import { Button } from 'components/atoms/button/Button';
 
@@ -19,8 +19,8 @@ export const ConfirmAction = ({ contentText, isLoading = false, open, onClose, o
         <Button variant="secondary" onClick={onClose}>
           Cancelar
         </Button>
-        <Button variant="navbar" onClick={onConfirm}>
-          {isLoading ? <CircularProgress color="inherit" size="1.8rem" /> : 'Confirmar'}
+        <Button isLoading={isLoading} variant="navbar" onClick={onConfirm}>
+          Confirmar
         </Button>
       </DialogActions>
       <Backdrop open={isLoading} />

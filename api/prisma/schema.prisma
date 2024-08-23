@@ -13,7 +13,7 @@ model Animal {
   breed       String       @default("SRD")
   coat        String
   color       String
-  description String       @db.VarChar(255)
+  description String       @db.VarChar(275)
   entryDate   String // YYYY-MM
   name        String
   photo       AnimalPhoto?

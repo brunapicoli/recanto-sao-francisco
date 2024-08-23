@@ -23,6 +23,9 @@ export const TextareaDescription = () => {
           label="Descrição"
           margin="dense"
           multiline
+          inputProps={{
+            maxlength: 275,
+          }}
         />
       )}
     />

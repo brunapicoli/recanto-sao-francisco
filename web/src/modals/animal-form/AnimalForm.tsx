@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { AxiosError } from 'axios';
-import { Backdrop, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { Backdrop, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import { DialogProps } from '@mui/material/Dialog';
 import { useAppContext } from 'context/AppContext';
 import { useSnackbarContext } from 'context/SnackbarContext';
-import { Animal, AnimalFormData, Species } from 'models/Animals';
+import { Animal, AnimalFormData, Size, Species } from 'models/Animals';
+import { Sex } from 'models/Sex';
 import { AnimalService } from 'services/AnimalService';
 import { Button } from 'components/atoms/button/Button';
 import { InputAge } from 'components/molecules/animal-form/InputAge';
@@ -32,6 +33,8 @@ export const AnimalForm = ({ animal, species, open, onClose }: AnimalFormProps) 
   const defaultValues = {
     ...animal,
     photo: undefined,
+    sex: animal?.sex || ('' as Sex),
+    size: animal?.size || ('' as Size),
   };
 
   const methods = useForm<AnimalFormData>({
@@ -119,7 +122,9 @@ export const AnimalForm = ({ animal, species, open, onClose }: AnimalFormProps) 
             <Button type="button" variant="secondary" onClick={handleCancel}>
               Cancelar
             </Button>
-            <Button type="submit">{isLoading ? <CircularProgress color="inherit" size="1.8rem" /> : 'Salvar'}</Button>
+            <Button isLoading={isLoading} type="submit">
+              Salvar
+            </Button>
           </DialogActions>
         </form>
       </FormProvider>
