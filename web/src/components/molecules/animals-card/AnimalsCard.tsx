@@ -1,3 +1,4 @@
+import { Skeleton } from '@mui/material';
 import { useAppContext } from 'context/AppContext';
 import { ArrowButton } from '../../atoms/arrow-button/ArrowButton';
 import { Title } from '../../atoms/title/Title';
@@ -38,9 +39,11 @@ export const AnimalsCard = ({ title, imgs, onClick }: AnimalsCardProps) => {
       </AnimalsCardHeader>
       <AnimalsCardContent>
         <AnimalsCardImgs>
-          {imgs.map((img) => (
-            <AnimalsCardImg key={img.src} src={img.src} alt={img.alt} />
-          ))}
+          {imgs.length > 0 ? (
+            imgs.map((img) => <AnimalsCardImg key={img.src} src={img.src} alt={img.alt} />)
+          ) : (
+            <Skeleton animation="wave" variant="rectangular" width="60rem" height="27.08rem" />
+          )}
         </AnimalsCardImgs>
         {(windowWidth > 590 || windowWidth <= 450) && renderButton}
       </AnimalsCardContent>

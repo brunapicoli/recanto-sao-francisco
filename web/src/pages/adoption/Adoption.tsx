@@ -66,20 +66,16 @@ export const Adoption = () => {
           </AdoptionText>
           <AdoptionText>Para mais informações sobre adoção, entre em contato conosco: (19) 98190-4050</AdoptionText>
           <AdoptionAnimals>
-            {dogs?.length > 0 && (
-              <AnimalsCard
-                title="NOSSOS CÃES"
-                imgs={dogsToShow.map((dog) => ({ src: dog.photo, alt: dog.name }))}
-                onClick={() => navigate('/adocao/caes')}
-              />
-            )}
-            {cats?.length > 0 && (
-              <AnimalsCard
-                title="NOSSOS GATOS"
-                imgs={catsToShow.map((cat) => ({ src: cat.photo, alt: cat.name }))}
-                onClick={() => navigate('/adocao/gatos')}
-              />
-            )}
+            <AnimalsCard
+              title="NOSSOS CÃES"
+              imgs={dogsToShow.map((dog) => ({ src: dog.photo, alt: dog.name }))}
+              onClick={() => navigate('/adocao/caes')}
+            />
+            <AnimalsCard
+              title="NOSSOS GATOS"
+              imgs={catsToShow.map((cat) => ({ src: cat.photo, alt: cat.name }))}
+              onClick={() => navigate('/adocao/gatos')}
+            />
           </AdoptionAnimals>
         </AdoptionContent>
       </AdoptionContainer>

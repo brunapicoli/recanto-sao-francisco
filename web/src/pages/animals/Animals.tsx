@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Skeleton } from '@mui/material';
 import { useAppContext } from 'context/AppContext';
 import { Species } from 'models/Animals';
 import { AnimalService } from 'services/AnimalService';
@@ -52,9 +53,18 @@ export const Animals = () => {
             </AddAnimalContainer>
           )}
           <AnimalsList>
-            {currentAnimal.map((animal) => (
-              <AnimalCard key={animal.id} animal={animal} />
-            ))}
+            {currentAnimal.length > 0
+              ? currentAnimal.map((animal) => <AnimalCard key={animal.id} animal={animal} />)
+              : Array.from({ length: 10 }).map((_, index) => (
+                  <Skeleton
+                    key={index}
+                    animation="wave"
+                    variant="rounded"
+                    width={290}
+                    height={392}
+                    style={{ borderRadius: '8px' }}
+                  />
+                ))}
           </AnimalsList>
         </AnimalsContainer>
       </NavbarFooter>
