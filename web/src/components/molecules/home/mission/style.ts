@@ -3,7 +3,7 @@ import { colors } from '../../../../styles/colors';
 
 export const MissionBackground = styled.div`
   position: relative;
-  background-color: ${colors.greenTertiary};
+  background-color: ${colors.blueTertiary};
 `;
 
 export const MissionBackgroundImage = styled.img`

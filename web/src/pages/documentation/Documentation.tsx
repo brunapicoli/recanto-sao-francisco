@@ -43,7 +43,7 @@ export const Documentation = () => {
   };
 
   return (
-    <NavbarFooter bgGreenContributionCTA>
+    <NavbarFooter bgBlueContributionCTA>
       <DocumentationContainer>
         <DocumentationTitle>Documentação</DocumentationTitle>
         <DocumentationList>

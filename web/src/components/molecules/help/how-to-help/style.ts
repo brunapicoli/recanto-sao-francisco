@@ -6,7 +6,7 @@ export const HowToHelpContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${colors.greenTertiary};
+  background-color: ${colors.blueTertiary};
 
   @media (max-width: 1350px) {
     padding: 64px;

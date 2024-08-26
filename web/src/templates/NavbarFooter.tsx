@@ -1,27 +1,25 @@
-import { Footer } from "../components/atoms/footer/Footer";
-import { ContributionCTA } from "../components/molecules/contribution-cta/ContributionCTA";
-import { Navbar } from "../components/molecules/navbar/Navbar";
+import { Footer } from '../components/atoms/footer/Footer';
+import { ContributionCTA } from '../components/molecules/contribution-cta/ContributionCTA';
+import { Navbar } from '../components/molecules/navbar/Navbar';
 
 type NavbarFooterProps = {
   children: React.ReactNode;
-  bgGreenNavbar?: boolean;
+  bgBlueNavbar?: boolean;
   hideContributionCTA?: boolean;
-  bgGreenContributionCTA?: boolean;
+  bgBlueContributionCTA?: boolean;
 };
 
 export const NavbarFooter = ({
   children,
-  bgGreenNavbar,
+  bgBlueNavbar,
   hideContributionCTA,
-  bgGreenContributionCTA,
+  bgBlueContributionCTA,
 }: NavbarFooterProps) => {
   return (
     <>
-      <Navbar bgGreen={bgGreenNavbar} />
+      <Navbar bgBlue={bgBlueNavbar} />
       {children}
-      {!hideContributionCTA && (
-        <ContributionCTA bgGreen={bgGreenContributionCTA} />
-      )}
+      {!hideContributionCTA && <ContributionCTA bgBlue={bgBlueContributionCTA} />}
       <Footer />
     </>
   );

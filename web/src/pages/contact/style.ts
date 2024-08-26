@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colors } from 'styles/colors';
 
 export const ContactContainer = styled.section`
-  background-color: ${colors.greenTertiary};
+  background-color: ${colors.blueTertiary};
   padding: 9.7rem 11rem;
 
   @media (max-width: 1350px) {

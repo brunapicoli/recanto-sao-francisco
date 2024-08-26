@@ -11,7 +11,7 @@ export const buttonStyles = css`
   cursor: pointer;
 
   &.primary {
-    background-color: ${colors.greenPrimary};
+    background-color: ${colors.bluePrimary};
     color: ${colors.white};
   }
 
@@ -26,7 +26,7 @@ export const buttonStyles = css`
   }
 
   &:hover {
-    opacity: 0.85;
+    opacity: 0.9;
     transition: 0.2s;
   }
 

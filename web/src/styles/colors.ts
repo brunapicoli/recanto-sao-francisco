@@ -1,11 +1,10 @@
 export const colors = {
-  greenPrimary: '#70C174',
-  greenSecondary: '#BEF3C0',
-  greenTertiary: '#EFF7F2',
-  black: '#0B0706',
-  primaryText: '#1D2130',
-  secondaryText: '#525560',
-  offWhite: '#EBF0F9',
+  bluePrimary: '#67C1E2',
+  blueSecondary: '#ACDDEF',
+  blueTertiary: '#EFF9FD',
+  black: '#120E0A',
+  primaryText: '#2B2118',
+  secondaryText: '#36291E',
   white: '#FFFFFF',
   border: '#E5E5E5',
 };

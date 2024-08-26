@@ -1,7 +1,7 @@
 import { HelpCard, HelpCardProps } from 'components/atoms/help-card/HelpCard';
-import DogIcon from 'assets/icons/dog.png';
-import DonateIcon from 'assets/icons/donate.png';
-import MoneyIcon from 'assets/icons/money.png';
+import DogIcon from 'assets/icons/dog.svg';
+import DonateIcon from 'assets/icons/donate.svg';
+import MoneyIcon from 'assets/icons/dollar-sign.svg';
 import {
   HowToHelpContent,
   HowToHelpContainer,

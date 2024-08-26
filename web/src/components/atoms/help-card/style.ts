@@ -8,8 +8,15 @@ export const HelpCardContainer = styled.div`
   flex: 1;
 `;
 
-export const HelpCardIcon = styled.img`
+export const HelpCardIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.8rem;
   width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 4px;
+  background-color: ${colors.bluePrimary};
 `;
 
 export const HelpCardContent = styled.div`

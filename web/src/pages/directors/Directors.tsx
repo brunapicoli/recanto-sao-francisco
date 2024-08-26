@@ -5,7 +5,7 @@ import { DirectorsContainer, DirectorsList, DirectorsTitle } from './style';
 
 export const Directors = () => {
   return (
-    <NavbarFooter bgGreenContributionCTA>
+    <NavbarFooter bgBlueContributionCTA>
       <DirectorsContainer>
         <DirectorsTitle>Conheça nossos dirigentes</DirectorsTitle>
         <DirectorsList>

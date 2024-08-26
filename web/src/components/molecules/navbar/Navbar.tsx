@@ -15,10 +15,10 @@ import {
 } from './style';
 
 type NavbarProps = {
-  bgGreen?: boolean;
+  bgBlue?: boolean;
 };
 
-export const Navbar = ({ bgGreen }: NavbarProps) => {
+export const Navbar = ({ bgBlue }: NavbarProps) => {
   const currentPath = useLocation().pathname;
   const { windowWidth } = useAppContext();
 
@@ -42,10 +42,10 @@ export const Navbar = ({ bgGreen }: NavbarProps) => {
   }, [windowWidth]);
 
   return (
-    <NavbarContainer bgGreen={bgGreen} className={hideMenu ? 'sandwichMenu' : ''}>
+    <NavbarContainer bgBlue={bgBlue} className={hideMenu ? 'sandwichMenu' : ''}>
       <NavbarLogoContainer className={hideMenu ? 'sandwichMenu' : ''}>
         <Link to="/">
-          <NavbarLogo src={LogoImg} alt="Logo do Recanto São Francisco" />
+          <NavbarLogo src={LogoImg} alt="Recanto São Francisco" />
         </Link>
         {hideMenu && (
           <NavbarSandwich onClick={() => setOpenMenuSandwich(!openMenuSandwich)}>

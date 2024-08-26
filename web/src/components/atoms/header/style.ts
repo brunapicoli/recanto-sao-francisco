@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import { colors } from '../../../styles/colors';
 
 type HeaderContainerProps = {
-  bgGreen?: boolean;
+  bgBlue?: boolean;
 };
 
 export const HeaderContainer = styled.section<HeaderContainerProps>`
-  background-color: ${({ bgGreen }) => colors[bgGreen ? 'greenTertiary' : 'white']};
+  background-color: ${({ bgBlue }) => colors[bgBlue ? 'blueTertiary' : 'white']};
   display: flex;
   align-items: center;
   justify-content: center;

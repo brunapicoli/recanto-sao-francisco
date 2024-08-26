@@ -3,7 +3,7 @@ import { colors } from '../../../styles/colors';
 
 export const DocsCardContainer = styled.div`
   border-radius: 8px;
-  background-color: ${colors.greenSecondary};
+  background-color: ${colors.blueSecondary};
   display: flex;
   align-items: center;
   justify-content: space-between;

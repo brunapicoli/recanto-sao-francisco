@@ -6,7 +6,7 @@ import CatAndDogImg from 'assets/images/cat-and-dog.png';
 
 export const Help = () => {
   return (
-    <NavbarFooter bgGreenContributionCTA>
+    <NavbarFooter bgBlueContributionCTA>
       <Header
         title="Colabore com a causa animal"
         subtitle="Sua contribuição possibilita aos animais uma vida melhor."

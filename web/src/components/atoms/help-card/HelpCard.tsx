@@ -9,7 +9,9 @@ export type HelpCardProps = {
 export const HelpCard = ({ title, description, img }: HelpCardProps) => {
   return (
     <HelpCardContainer>
-      <HelpCardIcon src={img} />
+      <HelpCardIcon>
+        <img src={img} alt="" />
+      </HelpCardIcon>
       <HelpCardContent>
         <HelpCardTitle>{title}</HelpCardTitle>
         {description}

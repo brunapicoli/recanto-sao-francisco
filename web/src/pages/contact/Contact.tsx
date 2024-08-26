@@ -17,7 +17,7 @@ import {
 
 export const Contact = () => {
   return (
-    <NavbarFooter bgGreenNavbar>
+    <NavbarFooter bgBlueNavbar>
       <ContactContainer>
         <ContactContent>
           <div>

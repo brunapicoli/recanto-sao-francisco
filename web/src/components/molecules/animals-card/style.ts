@@ -3,7 +3,7 @@ import { colors } from '../../../styles/colors';
 
 export const AnimalsCardContainer = styled.div`
   border-radius: 8px;
-  background-color: ${colors.greenSecondary};
+  background-color: ${colors.blueSecondary};
   overflow: hidden;
   display: flex;
   flex-direction: column;

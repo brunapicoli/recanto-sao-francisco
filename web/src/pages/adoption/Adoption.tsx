@@ -36,11 +36,11 @@ export const Adoption = () => {
   }, []);
 
   return (
-    <NavbarFooter hideContributionCTA bgGreenNavbar>
+    <NavbarFooter hideContributionCTA bgBlueNavbar>
       <Header
         title="Diga não ao abandono de animais e adote um peludo"
         subtitle="Transforme vidas. Não compre, adote!"
-        bgGreen
+        bgBlue
       />
       <AdoptionContainer>
         <AdoptionContent>

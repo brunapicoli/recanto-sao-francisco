@@ -9,16 +9,16 @@ import {
 } from './style';
 
 type ContributionCTAProps = {
-  bgGreen?: boolean;
+  bgBlue?: boolean;
 };
 
-export const ContributionCTA = ({ bgGreen }: ContributionCTAProps) => {
+export const ContributionCTA = ({ bgBlue }: ContributionCTAProps) => {
   const openForm = () => {
     window.open('https://docs.google.com/forms/d/e/1FAIpQLScpT925bG4ssxJRwf6R5jprubhn_GIBr1_A7-kIjOHG9hml-w/viewform');
   };
 
   return (
-    <ContributionCTAContainer bgGreen={bgGreen}>
+    <ContributionCTAContainer bgBlue={bgBlue}>
       <ContributionCTAContent bgImg={DogsPlayingImg}>
         <BackgroundOverlay className="backgroundOverlay">
           <ContributionCTATitle>Você pode contribuir com o Recanto São Francisco!</ContributionCTATitle>

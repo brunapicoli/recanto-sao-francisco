@@ -7,7 +7,7 @@ export const DirectorCardContainer = styled.div`
   gap: 8px;
   width: 29.8rem;
   border-radius: 8px;
-  background-color: ${colors.greenSecondary};
+  background-color: ${colors.blueSecondary};
   padding: 1.6rem 2.4rem;
 `;
 

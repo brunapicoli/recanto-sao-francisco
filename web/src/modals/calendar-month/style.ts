@@ -65,7 +65,7 @@ export const CalendarContainer = styled(Calendar)`
         color: ${colors.white};
       }
       border-radius: 4px;
-      background-color: ${colors.greenPrimary};
+      background-color: ${colors.bluePrimary};
     }
   }
 `;

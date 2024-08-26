@@ -4,12 +4,12 @@ type HeaderProps = {
   title: string;
   subtitle: string;
   img?: string;
-  bgGreen?: boolean;
+  bgBlue?: boolean;
 };
 
-export const Header = ({ title, subtitle, img, bgGreen }: HeaderProps) => {
+export const Header = ({ title, subtitle, img, bgBlue }: HeaderProps) => {
   return (
-    <HeaderContainer bgGreen={bgGreen}>
+    <HeaderContainer bgBlue={bgBlue}>
       <HeaderContent className={img ? 'space-between' : ''}>
         <HeaderTextContainer className={img ? 'margin-top' : ''}>
           <HeaderTitle>{title}</HeaderTitle>

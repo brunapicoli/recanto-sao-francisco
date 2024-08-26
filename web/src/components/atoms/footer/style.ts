@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { colors } from "../../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../../styles/colors';
 
 export const FooterContainer = styled.nav`
   display: flex;
@@ -74,7 +74,7 @@ export const FooterMenuList = styled.div`
     cursor: pointer;
 
     &:not(:last-child) {
-      margin-bottom: 2.4rem;
+      margin-bottom: 2rem;
     }
   }
 `;
@@ -84,7 +84,7 @@ export const FooterMenuTitle = styled.h2`
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 160%;
-  margin-bottom: 2.4rem;
+  margin-bottom: 2rem;
 `;
 
 export const FooterForm = styled.p`

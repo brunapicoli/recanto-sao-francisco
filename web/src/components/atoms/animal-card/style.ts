@@ -41,7 +41,7 @@ export const AnimalCardName = styled.h2`
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 2px;
-  color: ${colors.offWhite};
+  color: ${colors.blueTertiary};
   text-align: center;
 `;
 
@@ -49,7 +49,7 @@ export const AnimalCardDescription = styled.p`
   font-size: 16px;
   font-weight: 400;
   line-height: 160%;
-  color: ${colors.offWhite};
+  color: ${colors.blueTertiary};
   margin: 5px 0;
 `;
 
@@ -62,7 +62,7 @@ export const AnimalCardItem = styled.li`
   font-weight: 400;
   line-height: 160%;
   list-style: disc;
-  color: ${colors.offWhite};
+  color: ${colors.blueTertiary};
 `;
 
 export const AnimalUpdateContainer = styled.div`

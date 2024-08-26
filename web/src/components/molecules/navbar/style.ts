@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { colors } from "../../../styles/colors";
+import styled from 'styled-components';
+import { colors } from '../../../styles/colors';
 
 type NavbarContainerProps = {
-  bgGreen?: boolean;
+  bgBlue?: boolean;
 };
 
 export const NavbarContainer = styled.nav<NavbarContainerProps>`
@@ -10,8 +10,7 @@ export const NavbarContainer = styled.nav<NavbarContainerProps>`
   align-items: center;
   justify-content: space-around;
   padding: 8px 0;
-  background-color: ${(props) =>
-    props.bgGreen ? colors.greenTertiary : colors.white};
+  background-color: ${(props) => (props.bgBlue ? colors.blueTertiary : colors.white)};
 
   &.sandwichMenu {
     flex-direction: column;
@@ -75,7 +74,6 @@ export const NavbarMenuList = styled.div`
 
     &.active {
       font-weight: 700;
-      color: ${colors.black};
     }
 
     &:last-child {
@@ -92,7 +90,7 @@ export const NavbarMenuList = styled.div`
     }
 
     &:hover {
-      opacity: 0.8;
+      opacity: 0.9;
       transition: 0.2s;
     }
   }
