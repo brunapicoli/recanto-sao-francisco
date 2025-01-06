@@ -1,6 +1,5 @@
-import { Sex } from 'models/Sex';
 import { DirectorCardContainer, DirectorCardName, DirectorCardPosition, DirectorCardText } from './style';
-import { Director } from 'models/Directors';
+import { Director, Sex } from 'models/Directors';
 
 type DirectorCardProps = {
   director: Director;

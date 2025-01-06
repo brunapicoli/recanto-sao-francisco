@@ -21,7 +21,7 @@ export const InputEntryDate = () => {
 
   const handleDateChange = (date: string) => {
     setValue('entryDate', date);
-    trigger();
+    trigger('entryDate');
   };
 
   const handleOpenCalendar = (event: MouseEvent<HTMLInputElement>) => {

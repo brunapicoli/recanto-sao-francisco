@@ -1,21 +1,33 @@
-import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
+import 'zod-openapi/extend';
 import { v2 as cloudinary } from 'cloudinary';
+import { FastifyPluginAsyncZodOpenApi } from 'fastify-zod-openapi';
 import { prisma } from '../../lib/prisma';
 
-export async function deleteAnimal(app: FastifyInstance) {
-  app.delete('/animal/:id', async (req, reply) => {
+const schema = {
+  tags: ['animals'],
+  description: 'Delete animal',
+  operationId: 'deleteAnimal',
+  headers: z.object({
+    authorization: z.string().optional(),
+  }),
+  params: z.object({
+    id: z.coerce.number(),
+  }),
+  response: {
+    401: z.object({ message: z.string() }),
+  },
+};
+
+export const deleteAnimal: FastifyPluginAsyncZodOpenApi = async (app) => {
+  app.delete('/animal/:id', { schema }, async (req, reply) => {
     const { authorization } = req.headers;
 
     if (!authorization) {
-      return reply.status(401).send('Usuário não autorizado para excluir animal');
+      return reply.status(401).send({ message: 'Usuário não autorizado para excluir animal' });
     }
 
-    const paramsSchema = z.object({
-      id: z.coerce.number(),
-    });
-
-    const { id } = paramsSchema.parse(req.params);
+    const { id } = req.params;
 
     const photo = await prisma.animalPhoto.findUniqueOrThrow({
       where: { animalId: id },
@@ -33,4 +45,4 @@ export async function deleteAnimal(app: FastifyInstance) {
       },
     });
   });
-}
+};

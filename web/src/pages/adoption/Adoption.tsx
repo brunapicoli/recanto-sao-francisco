@@ -1,9 +1,7 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppContext } from 'context/AppContext';
-import { AnimalService } from 'services/AnimalService';
 import { Header } from '../../components/atoms/header/Header';
 import { AnimalsCard } from '../../components/molecules/animals-card/AnimalsCard';
+import { useGetCats, useGetDogs } from 'http/generated/animals/animals';
 import { NavbarFooter } from '../../templates/NavbarFooter';
 import {
   AdoptionAnimals,
@@ -17,23 +15,13 @@ import {
 } from './style';
 
 export const Adoption = () => {
-  const { cats, setCats, dogs, setDogs } = useAppContext();
+  const { data: cats } = useGetCats();
+  const { data: dogs } = useGetDogs();
 
   const navigate = useNavigate();
 
-  const catsToShow = cats.slice(0, 3);
-  const dogsToShow = dogs.slice(0, 3);
-
-  const getAnimals = async () => {
-    const cats = await AnimalService.getCats();
-    const dogs = await AnimalService.getDogs();
-    setCats(cats);
-    setDogs(dogs);
-  };
-
-  useEffect(() => {
-    getAnimals();
-  }, []);
+  const catsToShow = cats?.slice(0, 3);
+  const dogsToShow = dogs?.slice(0, 3);
 
   return (
     <NavbarFooter hideContributionCTA bgBlueNavbar>
@@ -66,16 +54,20 @@ export const Adoption = () => {
           </AdoptionText>
           <AdoptionText>Para mais informações sobre adoção, entre em contato conosco: (19) 98190-4050</AdoptionText>
           <AdoptionAnimals>
-            <AnimalsCard
-              title="NOSSOS CÃES"
-              imgs={dogsToShow.map((dog) => ({ src: dog.photo, alt: dog.name }))}
-              onClick={() => navigate('/adocao/caes')}
-            />
-            <AnimalsCard
-              title="NOSSOS GATOS"
-              imgs={catsToShow.map((cat) => ({ src: cat.photo, alt: cat.name }))}
-              onClick={() => navigate('/adocao/gatos')}
-            />
+            {dogsToShow && (
+              <AnimalsCard
+                title="NOSSOS CÃES"
+                imgs={dogsToShow.map((dog) => ({ src: dog.photo, alt: dog.name }))}
+                onClick={() => navigate('/adocao/caes')}
+              />
+            )}
+            {catsToShow && (
+              <AnimalsCard
+                title="NOSSOS GATOS"
+                imgs={catsToShow.map((cat) => ({ src: cat.photo, alt: cat.name }))}
+                onClick={() => navigate('/adocao/gatos')}
+              />
+            )}
           </AdoptionAnimals>
         </AdoptionContent>
       </AdoptionContainer>

@@ -1,4 +1,7 @@
-import { Sex } from './Sex';
+export enum Sex {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+}
 
 export interface Director {
   name: string;

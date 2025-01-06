@@ -1,8 +1,20 @@
-import { FastifyInstance } from 'fastify';
+import { z } from 'zod';
+import 'zod-openapi/extend';
+import { FastifyPluginAsyncZodOpenApi } from 'fastify-zod-openapi';
 import { prisma } from '../../lib/prisma';
+import { animalSchema } from '../../schema/animal';
 
-export async function getDogs(app: FastifyInstance) {
-  app.get('/dogs', async () => {
+const schema = {
+  tags: ['animals'],
+  description: 'List dogs',
+  operationId: 'getDogs',
+  response: {
+    200: z.array(animalSchema),
+  },
+};
+
+export const getDogs: FastifyPluginAsyncZodOpenApi = async (app) => {
+  app.get('/dogs', { schema }, async () => {
     const dogs = await prisma.animal.findMany({
       where: {
         species: 'DOG',
@@ -26,4 +38,4 @@ export async function getDogs(app: FastifyInstance) {
 
     return dogsWithPhoto;
   });
-}
+};

@@ -28,7 +28,7 @@ export const InputPhoto = ({ required }: InputPhotoProps) => {
 
   const handleChangePhoto = (file: File) => {
     setValue('photo', file);
-    trigger();
+    trigger('photo');
   };
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {

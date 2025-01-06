@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import { AxiosError } from 'axios';
 import { Backdrop, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import { DialogProps } from '@mui/material/Dialog';
-import { useAppContext } from 'context/AppContext';
 import { useSnackbarContext } from 'context/SnackbarContext';
-import { Animal, AnimalFormData, Size, Species } from 'models/Animals';
-import { Sex } from 'models/Sex';
-import { AnimalService } from 'services/AnimalService';
+import {
+  getGetCatsQueryKey,
+  getGetDogsQueryKey,
+  useCreateAnimal,
+  useUpdateAnimal,
+} from 'http/generated/animals/animals';
+import { CreateAnimal201, CreateAnimal201Species, CreateAnimalBody } from 'http/generated/api.schemas';
+import { queryClient } from 'lib/react-query';
 import { Button } from 'components/atoms/button/Button';
 import { InputAge } from 'components/molecules/animal-form/InputAge';
 import { InputEntryDate } from 'components/molecules/animal-form/InputEntryDate';
@@ -19,65 +22,95 @@ import { TextareaDescription } from 'components/molecules/animal-form/TextareaDe
 import { AnimalFormColumn, AnimalFormRow } from './style';
 
 type AnimalFormProps = DialogProps & {
-  animal?: Animal;
-  species: Species;
+  animal?: CreateAnimal201;
+  species: CreateAnimal201Species;
   onClose: () => void;
 };
 
 export const AnimalForm = ({ animal, species, open, onClose }: AnimalFormProps) => {
-  const { setCats, setDogs } = useAppContext();
+  const { mutate: createAnimal, isPending: isCreatePending } = useCreateAnimal({
+    mutation: {
+      onSuccess: (data) => {
+        if (species === CreateAnimal201Species.DOG) {
+          queryClient.setQueryData<CreateAnimal201[]>(getGetDogsQueryKey(), (state = []) => {
+            return [{ ...data }, ...state];
+          });
+        } else {
+          queryClient.setQueryData<CreateAnimal201[]>(getGetCatsQueryKey(), (state = []) => {
+            return [{ ...data }, ...state];
+          });
+        }
+        onClose();
+        openSnackbar({ message: 'Animal salvo com sucesso' });
+        methods.reset(defaultValues);
+      },
+      onError: (error) => {
+        openSnackbar({ message: error.message, error: true });
+      },
+    },
+  });
+
+  const { mutate: updateAnimal, isPending: isUpdatePending } = useUpdateAnimal({
+    mutation: {
+      onSuccess: (data) => {
+        if (species === CreateAnimal201Species.DOG) {
+          queryClient.setQueryData<CreateAnimal201[]>(getGetDogsQueryKey(), (state = []) => {
+            return state.map((dog) => {
+              if (dog.id === data.id) {
+                return { ...data };
+              }
+              return dog;
+            });
+          });
+        } else {
+          queryClient.setQueryData<CreateAnimal201[]>(getGetCatsQueryKey(), (state = []) => {
+            return state.map((cat) => {
+              if (cat.id === data.id) {
+                return { ...data };
+              }
+              return cat;
+            });
+          });
+        }
+        onClose();
+        openSnackbar({ message: 'Animal salvo com sucesso' });
+        methods.reset(defaultValues);
+      },
+      onError: (error) => {
+        openSnackbar({ message: error.message, error: true });
+      },
+    },
+  });
+
   const { openSnackbar } = useSnackbarContext();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const isLoading = isCreatePending || isUpdatePending;
 
   const defaultValues = {
     ...animal,
-    photo: undefined,
-    sex: animal?.sex || ('' as Sex),
-    size: animal?.size || ('' as Size),
   };
 
-  const methods = useForm<AnimalFormData>({
+  const methods = useForm<CreateAnimalBody>({
     defaultValues,
   });
 
-  const { isDirty, isSubmitSuccessful } = methods.formState;
+  const { isDirty } = methods.formState;
 
   const handleCancel = () => {
     methods.reset(defaultValues);
     onClose();
   };
 
-  const onSubmit: SubmitHandler<AnimalFormData> = async (data) => {
+  const onSubmit: SubmitHandler<CreateAnimalBody> = async (data) => {
     if (
       isDirty ||
       methods.getValues('entryDate') !== defaultValues.entryDate ||
-      methods.getValues('photo') !== defaultValues.photo
+      String(methods.getValues('photo')) !== defaultValues.photo
     ) {
-      try {
-        setIsLoading(true);
-        if (animal) {
-          await AnimalService.updateAnimal(animal.id, data);
-        } else {
-          await AnimalService.createAnimal({ ...data, species });
-        }
-        if (species === Species.CAT) {
-          const updatedCats = await AnimalService.getCats();
-          setCats(updatedCats);
-        } else {
-          const updatedDogs = await AnimalService.getDogs();
-          setDogs(updatedDogs);
-        }
-        onClose();
-        openSnackbar({ message: 'Animal salvo com sucesso' });
-      } catch (error) {
-        let errorMessage = 'Erro ao salvar animal.';
-        if (error instanceof AxiosError && error.response?.data?.message) {
-          errorMessage = errorMessage + ' ' + error.response?.data?.message;
-        }
-        openSnackbar({ message: errorMessage, error: true });
-      } finally {
-        setIsLoading(false);
+      if (animal) {
+        updateAnimal({ data, id: animal.id });
+      } else {
+        createAnimal({ data: { ...data, species } });
       }
     } else {
       onClose();
@@ -87,12 +120,6 @@ export const AnimalForm = ({ animal, species, open, onClose }: AnimalFormProps) 
   useEffect(() => {
     methods.reset(defaultValues);
   }, [animal]);
-
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      methods.reset(defaultValues);
-    }
-  }, [methods.formState]);
 
   return (
     <Dialog open={open} onClose={onClose}>

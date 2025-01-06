@@ -1,22 +1,21 @@
-import { Size } from 'models/Animals';
-import { Sex } from 'models/Sex';
+import { CreateAnimal201Sex, CreateAnimal201Size } from 'http/generated/api.schemas';
 
 export const sexOptions = {
-  [Sex.FEMALE]: 'Fêmea',
-  [Sex.MALE]: 'Macho',
+  [CreateAnimal201Sex.FEMALE]: 'Fêmea',
+  [CreateAnimal201Sex.MALE]: 'Macho',
 };
 
 export const sizeOptions = {
-  [Size.LARGE]: 'Grande',
-  [Size.MEDIUM]: 'Médio',
-  [Size.SMALL]: 'Pequeno',
+  [CreateAnimal201Size.LARGE]: 'Grande',
+  [CreateAnimal201Size.MEDIUM]: 'Médio',
+  [CreateAnimal201Size.SMALL]: 'Pequeno',
 };
 
-export const getSizeText = (animalSize: Size) => {
+export const getSizeText = (animalSize: CreateAnimal201Size) => {
   switch (animalSize) {
-    case Size.SMALL:
+    case CreateAnimal201Size.SMALL:
       return 'pequeno';
-    case Size.MEDIUM:
+    case CreateAnimal201Size.MEDIUM:
       return 'médio';
     default:
       return 'grande';

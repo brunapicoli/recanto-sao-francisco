@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { AxiosError } from 'axios';
 import { useAppContext } from 'context/AppContext';
 import { useSnackbarContext } from 'context/SnackbarContext';
-import { Animal, Species } from 'models/Animals';
-import { Sex } from 'models/Sex';
-import { AnimalService } from 'services/AnimalService';
+import { getGetCatsQueryKey, getGetDogsQueryKey, useDeleteAnimal } from 'http/generated/animals/animals';
+import { CreateAnimal201, CreateAnimal201Sex, CreateAnimal201Species } from 'http/generated/api.schemas';
+import { queryClient } from 'lib/react-query';
 import { getSizeText } from 'utils/AnimalUtil';
 import { formatDateToMonthYear, stringToDate } from 'utils/DateUtil';
 import { AnimalForm } from 'modals/animal-form/AnimalForm';
@@ -22,43 +21,39 @@ import {
 } from './style';
 
 type AnimalCardProps = {
-  animal: Animal;
+  animal: CreateAnimal201;
 };
 
 export const AnimalCard = ({ animal }: AnimalCardProps) => {
-  const { isLoggedIn, setCats, setDogs } = useAppContext();
+  const { isLoggedIn } = useAppContext();
   const { openSnackbar } = useSnackbarContext();
 
-  const [isLoading, setIsLoading] = useState(false);
   const [openAnimalForm, setOpenAnimalForm] = useState(false);
   const [openConfirmDelete, setOpenConfirmDelete] = useState(false);
   const [showAnimalInfo, setShowAnimalInfo] = useState(false);
 
-  const male = animal.sex === Sex.MALE;
+  const male = animal.sex === CreateAnimal201Sex.MALE;
 
-  const handleDeleteAnimal = async () => {
-    try {
-      setIsLoading(true);
-      await AnimalService.deleteAnimal(animal.id);
-      if (animal.species === Species.CAT) {
-        const updatedCats = await AnimalService.getCats();
-        setCats(updatedCats);
-      } else {
-        const updatedDogs = await AnimalService.getDogs();
-        setDogs(updatedDogs);
-      }
-      setOpenConfirmDelete(false);
-      openSnackbar({ message: 'Animal excluído com sucesso!' });
-    } catch (error) {
-      let errorMessage = 'Erro ao excluir animal.';
-      if (error instanceof AxiosError && error.response?.data?.message) {
-        errorMessage = errorMessage + ' ' + error.response?.data?.message;
-      }
-      openSnackbar({ message: errorMessage, error: true });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { mutate: deleteAnimal, isPending } = useDeleteAnimal({
+    mutation: {
+      onSuccess: () => {
+        if (animal.species === CreateAnimal201Species.DOG) {
+          queryClient.setQueryData<CreateAnimal201[]>(getGetDogsQueryKey(), (state = []) => {
+            return state.filter((dog) => dog.id !== animal.id);
+          });
+        } else {
+          queryClient.setQueryData<CreateAnimal201[]>(getGetCatsQueryKey(), (state = []) => {
+            return state.filter((cat) => cat.id !== animal.id);
+          });
+        }
+        setOpenConfirmDelete(false);
+        openSnackbar({ message: 'Animal excluído com sucesso!' });
+      },
+      onError: (error) => {
+        openSnackbar({ message: error.message, error: true });
+      },
+    },
+  });
 
   return (
     <>
@@ -106,8 +101,8 @@ export const AnimalCard = ({ animal }: AnimalCardProps) => {
       <ConfirmAction
         open={openConfirmDelete}
         contentText={`Confirmar exclusão de ${animal.name}?`}
-        isLoading={isLoading}
-        onConfirm={handleDeleteAnimal}
+        isLoading={isPending}
+        onConfirm={() => deleteAnimal({ id: animal.id })}
         onClose={() => setOpenConfirmDelete(false)}
       />
     </>

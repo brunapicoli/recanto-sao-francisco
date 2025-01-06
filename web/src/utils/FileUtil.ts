@@ -7,6 +7,7 @@ export const getResizeFile = async (file: File): Promise<File> => {
     });
     return new File([resizedFile], file.name, {
       ...file,
+      type: 'image/jpeg',
     });
   } catch (error) {
     return file;

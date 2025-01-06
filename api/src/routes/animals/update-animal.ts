@@ -1,81 +1,80 @@
-import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
+import 'zod-openapi/extend';
 import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
+import { FastifyPluginAsyncZodOpenApi } from 'fastify-zod-openapi';
 import { prisma } from '../../lib/prisma';
-import { fileToDataURI } from '../../utils/file-util';
+import { animalSchema } from '../../schema/animal';
 
-export async function updateAnimal(app: FastifyInstance) {
-  app.patch('/animal/:id', async (req, reply) => {
+const schema = {
+  tags: ['animals'],
+  description: 'Update animal',
+  operationId: 'updateAnimal',
+  consumes: ['multipart/form-data'],
+  params: z.object({
+    id: z.coerce.number(),
+  }),
+  headers: z.object({
+    authorization: z.string().optional(),
+  }),
+  body: animalSchema
+    .omit({ id: true })
+    .merge(
+      z.object({
+        age: z.coerce.number(),
+        photo: z.string().openapi({
+          type: 'string',
+          format: 'binary',
+        }),
+      })
+    )
+    .partial(),
+  response: {
+    200: animalSchema,
+    401: z.object({ message: z.string() }),
+  },
+};
+
+export const updateAnimal: FastifyPluginAsyncZodOpenApi = async (app) => {
+  app.patch('/animal/:id', { schema }, async (req, reply) => {
     const { authorization } = req.headers;
 
     if (!authorization) {
-      return reply.status(401).send('Usuário não autorizado para atualizar animal');
+      return reply.status(401).send({ message: 'Usuário não autorizado para atualizar animal' });
     }
 
-    const paramsSchema = z.object({
-      id: z.coerce.number(),
-    });
-
-    const { id } = paramsSchema.parse(req.params);
-
-    const formDataSchema = z.object({
-      age: z.number().optional(),
-      breed: z.string().optional(),
-      coat: z.string().optional(),
-      color: z.string().optional(),
-      description: z.string().optional(),
-      entryDate: z.string().optional(),
-      name: z.string().optional(),
-      photo: z.string().optional(),
-      sex: z.enum(['MALE', 'FEMALE']).optional(),
-      size: z.enum(['SMALL', 'MEDIUM', 'LARGE']).optional(),
-    });
+    const { id } = req.params;
 
     const animalPhoto = await prisma.animalPhoto.findUniqueOrThrow({
       where: { animalId: id },
     });
 
-    const formData = await req.formData();
+    const animalData = req.body;
 
-    let animalData = {} as z.infer<typeof formDataSchema>;
+    let uploadResponse = {} as UploadApiResponse;
 
-    for (const [name, value] of formData) {
-      if (name === 'photo' && value instanceof File) {
-        const dataURI = await fileToDataURI(value);
-        const uploadResponse = await cloudinary.uploader.upload(dataURI, {
-          public_id: animalPhoto.publicId,
-          invalidate: true,
-        });
-        animalData.photo = uploadResponse.secure_url;
-      } else if (name === 'age') {
-        animalData[name] = parseInt(value as string, 10);
-      } else {
-        animalData[name] = value;
-      }
+    if (animalData.photo) {
+      uploadResponse = await cloudinary.uploader.upload(animalData.photo, {
+        public_id: animalPhoto.publicId,
+        invalidate: true,
+      });
     }
 
-    await prisma.animal.update({
+    const animal = await prisma.animal.update({
       where: {
         id,
       },
       data: {
-        age: animalData.age,
-        breed: animalData.breed,
-        coat: animalData.coat,
-        color: animalData.color,
-        description: animalData.description,
-        entryDate: animalData.entryDate,
-        name: animalData.name,
+        ...animalData,
         photo: {
           update: {
-            url: animalData.photo,
+            url: uploadResponse.secure_url,
           },
         },
-        sex: animalData.sex,
-        size: animalData.size,
       },
     });
 
-    return { ...animalData };
+    const animalWithPhoto = { ...animal, photo: uploadResponse.secure_url || animalPhoto.url };
+
+    return animalWithPhoto;
   });
-}
+};

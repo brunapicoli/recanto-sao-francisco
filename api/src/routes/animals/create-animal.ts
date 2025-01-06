@@ -1,49 +1,49 @@
-import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
-import { v2 as cloudinary, UploadApiResponse } from 'cloudinary';
+import 'zod-openapi/extend';
+import { v2 as cloudinary } from 'cloudinary';
+import { FastifyPluginAsyncZodOpenApi } from 'fastify-zod-openapi';
 import { prisma } from '../../lib/prisma';
-import { fileToDataURI } from '../../utils/file-util';
+import { animalSchema } from '../../schema/animal';
 
-export async function createAnimal(app: FastifyInstance) {
-  app.post('/animal', async (req, reply) => {
-    const { authorization } = req.headers;
-
-    if (!authorization) {
-      return reply.status(401).send('Usuário não autorizado para adicionar animal');
-    }
-
-    const formDataSchema = z.object({
-      age: z.number(),
+const schema = {
+  tags: ['animals'],
+  description: 'Create animal',
+  operationId: 'createAnimal',
+  consumes: ['multipart/form-data'],
+  headers: z.object({
+    authorization: z.string().optional(),
+  }),
+  body: animalSchema.omit({ id: true }).merge(
+    z.object({
+      age: z.coerce.number(),
       breed: z.string().optional(),
       coat: z.string().optional(),
       color: z.string().optional(),
-      description: z.string(),
-      entryDate: z.string(),
-      name: z.string(),
-      sex: z.enum(['MALE', 'FEMALE']),
-      size: z.enum(['SMALL', 'MEDIUM', 'LARGE']),
-      species: z.enum(['CAT', 'DOG']),
-    });
+      photo: z.string().openapi({
+        type: 'string',
+        format: 'binary',
+      }),
+    })
+  ),
+  response: {
+    201: animalSchema,
+    401: z.object({ message: z.string() }),
+  },
+};
 
-    const formData = await req.formData();
+export const createAnimal: FastifyPluginAsyncZodOpenApi = async (app) => {
+  app.post('/animal', { schema }, async (req, reply) => {
+    const { authorization } = req.headers;
 
-    const species = formData.get('species');
-
-    let animalData = {} as z.infer<typeof formDataSchema>;
-    let uploadResponse = {} as UploadApiResponse;
-
-    for (const [name, value] of formData) {
-      if (name === 'photo' && value instanceof File) {
-        const dataURI = await fileToDataURI(value);
-        uploadResponse = await cloudinary.uploader.upload(dataURI, {
-          folder: species === 'CAT' ? 'cats' : 'dogs',
-        });
-      } else if (name === 'age') {
-        animalData[name] = parseInt(value as string, 10);
-      } else {
-        animalData[name] = value;
-      }
+    if (!authorization) {
+      return reply.status(401).send({ message: 'Usuário não autorizado para adicionar animal' });
     }
+
+    const animalData = req.body;
+
+    const uploadResponse = await cloudinary.uploader.upload(animalData.photo, {
+      folder: animalData.species === 'CAT' ? 'cats' : 'dogs',
+    });
 
     const animal = await prisma.animal.create({
       data: {
@@ -61,6 +61,6 @@ export async function createAnimal(app: FastifyInstance) {
 
     const animalWithPhoto = { ...animal, photo: uploadResponse.secure_url };
 
-    return animalWithPhoto;
+    return reply.status(201).send(animalWithPhoto);
   });
-}
+};

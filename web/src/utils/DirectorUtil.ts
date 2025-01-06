@@ -1,5 +1,4 @@
-import { Sex } from 'models/Sex';
-import { Director } from 'models/Directors';
+import { Director, Sex } from 'models/Directors';
 
 export const directors: Director[] = [
   {
