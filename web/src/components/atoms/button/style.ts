@@ -12,7 +12,7 @@ export const buttonStyles = css`
 
   &.primary {
     background-color: ${colors.bluePrimary};
-    color: ${colors.white};
+    color: ${colors.primaryText};
   }
 
   &.secondary {
