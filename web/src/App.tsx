@@ -1,4 +1,5 @@
-import { StrictMode } from 'react';
+import { StrictMode, useEffect } from 'react';
+import TagManager from 'react-gtm-module';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from 'lib/react-query';
@@ -10,6 +11,14 @@ import { SnackbarProvider } from 'context/SnackbarContext';
 import { muiTheme } from 'styles/mui-theme';
 
 function App() {
+  useEffect(() => {
+    const tagManagerArgs = {
+      gtmId: 'G-KKGVJH0DRX',
+    };
+
+    TagManager.initialize(tagManagerArgs);
+  }, []);
+
   return (
     <StrictMode>
       <GlobalStyle />

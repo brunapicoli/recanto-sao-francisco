@@ -2894,6 +2894,11 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-gtm-module@^2.0.3":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@types/react-gtm-module/-/react-gtm-module-2.0.4.tgz#27457712f7a17f44e752d2b7bd93e794a5fc6ff3"
+  integrity sha512-5wPMWsUE5AI6O0B0K1/zbs0rFHBKu+7NWXQwDXhqvA12ooLD6W1AYiWZqR4UiOd7ixZDV1H5Ys301zEsqyIfNg==
+
 "@types/react-router-dom@^5.3.0":
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-5.3.3.tgz#e9d6b4a66fcdbd651a5f106c2656a30088cc1e83"
@@ -9221,6 +9226,11 @@ react-error-overlay@^6.0.11:
   version "6.0.11"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.11.tgz#92835de5841c5cf08ba00ddd2d677b6d17ff9adb"
   integrity sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==
+
+react-gtm-module@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/react-gtm-module/-/react-gtm-module-2.0.11.tgz#14484dac8257acd93614e347c32da9c5ac524206"
+  integrity sha512-8gyj4TTxeP7eEyc2QKawEuQoAZdjKvMY4pgWfycGmqGByhs17fR+zEBs0JUDq4US/l+vbTl+6zvUIx27iDo/Vw==
 
 react-hook-form@^7.52.2:
   version "7.52.2"
