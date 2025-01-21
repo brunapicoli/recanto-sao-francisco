@@ -9,6 +9,10 @@ export const Documentation = () => {
       link: 'https://drive.google.com/drive/folders/11Sm7JSbfJxTiZGqDikSkVBoThCsKnuUY?usp=sharing',
     },
     {
+      title: 'DOCUMENTAÇÃO 2024',
+      link: 'https://drive.google.com/drive/folders/1z1eagiIr1D9ITNT_llJipHwPnshfMgaG?usp=sharing',
+    },
+    {
       title: 'DOCUMENTAÇÃO 2023',
       link: 'https://drive.google.com/drive/folders/1AlfIEPz-RBYTMeoxfqq3eo07GNJvJ1Ue?usp=sharing',
     },
